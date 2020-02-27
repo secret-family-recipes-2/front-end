@@ -7,7 +7,6 @@ import {
 const initialState = {
   user: {
     id: null,
-    email: '',
   },
   recipes: [],
   isFetching: false,
@@ -26,7 +25,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isFetching: false,
-        user: action.payload,
+        user: { id: action.payload },
       }
     case POST_LOGIN_FAILURE:
       return {

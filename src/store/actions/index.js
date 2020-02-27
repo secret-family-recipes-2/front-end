@@ -8,10 +8,11 @@ export const postLogin = credentials => dispatch => {
   dispatch({ type: POST_LOGIN_START })
 
   axiosWithAuth()
-    .post('login_endpoint_here', credentials)
+    .post('/auth/login', credentials)
     .then(res => {
       console.log(res)
-      dispatch({ type: POST_LOGIN_SUCCESS, payload: res.data })
+      localStorage.setItem('token', res.data.token)
+      dispatch({ type: POST_LOGIN_SUCCESS, payload: res.data.id })
     })
     .catch(err => {
       console.log(err)
