@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route, Link, Redirect } from 'react-router-dom'
+import { Switch, Route, Link, Redirect, useHistory } from 'react-router-dom'
 
 import ProtectedRoute from './utils/ProtectedRoute'
 
@@ -9,13 +9,26 @@ import AddNewRecipe from './components/recipes/AddRecipe'
 import RecipeList from './components/recipes/RecipeList'
 
 const App = () => {
+  const history = useHistory()
+
+  const logout = e => {
+    e.preventDefault()
+    localStorage.removeItem('token')
+    history.push('/login')
+  }
+
   return (
     <div>
       <nav className='nav-links'>
         <h2>Secret Family Recipes Cookbook</h2>
         <div>
+          <Link to='/recipes'>View Recipes</Link>
+          <Link to='/addrecipe'>Add Recipe</Link>
           <Link to='/login'>Log In</Link>
           <Link to='/registration'>Sign Up</Link>
+          <Link to='#' onClick={logout}>
+            Log Out
+          </Link>
         </div>
       </nav>
 
