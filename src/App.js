@@ -25,9 +25,7 @@ const App = () => {
         <div>
           <Link to='/recipes'>View Recipes</Link>
           <Link to='/addrecipe'>Add Recipe</Link>
-          <Link exact to='/edit-recipe'>
-            Edit Recipe
-          </Link>
+          <Link to='/edit-recipe'>Edit Recipe</Link>
           <Link to='/login'>Log In</Link>
           <Link to='/registration'>Sign Up</Link>
           <Link to='#' onClick={logout}>
