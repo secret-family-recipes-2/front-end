@@ -8,7 +8,7 @@ export const POST_REGISTER_START = 'POST_REGISTER_START'
 export const POST_REGISTER_SUCCESS = 'POST_REGISTER_SUCCESS'
 export const POST_REGISTER_FAILURE = 'POST_REGISTER_FAILURE'
 
-export const postLogin = credentials => dispatch => {
+export const postLogin = credentials  => dispatch => {
   dispatch({ type: POST_LOGIN_START })
 
   axiosWithAuth()

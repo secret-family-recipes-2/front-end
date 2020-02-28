@@ -6,6 +6,7 @@ import ProtectedRoute from './utils/ProtectedRoute'
 import RegistrationForm from './components/user/RegistrationForm'
 import LoginForm from './components/user/LoginForm'
 import AddNewRecipe from './components/recipes/AddRecipe'
+import EditRecipe from './components/recipes/EditRecipe'
 import RecipeList from './components/recipes/RecipeList'
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
         <div>
           <Link to='/recipes'>View Recipes</Link>
           <Link to='/addrecipe'>Add Recipe</Link>
+          <Link to='/edit-recipe'>Edit Recipe</Link>
           <Link to='/login'>Log In</Link>
           <Link to='/registration'>Sign Up</Link>
           <Link to='#' onClick={logout}>
@@ -36,6 +38,7 @@ const App = () => {
       <Switch>
         {/* Protected routes check for a token, and redirect to the login if there is none */}
         <ProtectedRoute path='/addrecipe' component={AddNewRecipe} />
+        <Route exact path='/edit-recipe' component={EditRecipe} />
         <ProtectedRoute path='/recipes' component={RecipeList} />
         <Route path='/registration' component={RegistrationForm} />
         <Route path='/login' component={LoginForm} />

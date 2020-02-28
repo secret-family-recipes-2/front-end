@@ -21,9 +21,9 @@ const LoginForm = props => {
   }
 
   // POST request handled through Redux
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault()
-    await props.postLogin(userInfo)
+    props.postLogin(userInfo)
     history.push('/recipes')
   }
 
