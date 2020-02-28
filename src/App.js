@@ -3,7 +3,7 @@ import { Switch, Route, Link, Redirect, useHistory } from 'react-router-dom'
 
 import ProtectedRoute from './utils/ProtectedRoute'
 
-import Registration from './components/user/Registration'
+import RegistrationForm from './components/user/RegistrationForm'
 import LoginForm from './components/user/LoginForm'
 import AddNewRecipe from './components/recipes/AddRecipe'
 import EditRecipe from './components/recipes/EditRecipe'
@@ -40,7 +40,7 @@ const App = () => {
         <ProtectedRoute path='/addrecipe' component={AddNewRecipe} />
         <ProtectedRoute path='/editrecipe' component={EditRecipe} />
         <ProtectedRoute path='/recipes' component={RecipeList} />
-        <Route path='/registration' component={Registration} />
+        <Route path='/registration' component={RegistrationForm} />
         <Route path='/login' component={LoginForm} />
 
         {/* If user has a token, redirect to recipe list, else redirect to login */}
