@@ -3,6 +3,7 @@ import { Route, Link } from 'react-router-dom'
 
 import Registration from './components/user/Registration'
 import LoginForm from './components/user/LoginForm'
+import AddNewRecipe from './components/recipes/AddRecipe'
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
       
       <Route path='/registration' exact component={Registration} />
       <Route path='/login' component ={LoginForm} />
+      {/* <AddNewRecipe/> here temporary  */}
     </div>
   )
 }
