@@ -1,60 +1,60 @@
-import React from 'react';
-import { axiosWithAuth } from "../../utils/axiosWithAuth";
+import React, { useState } from 'react'
+import { connect } from 'react-redux'
+import { axiosWithAuth } from '../../utils/axiosWithAuth'
 
-class LoginForm extends React.Component {
-    state = {
-        userInfo: {
-            username: "",
-            password: ""
-        }
-    };
+import { postLogin } from '../../store/actions'
 
-    handleChanges = e => {
-        this.setState({
-            userInfo: {
-                ...this.state.userInfo,
-                [e.target.name]: e.target.value
-            }
-        });
-    };
-    handaleSubmit = e => {
-        e.preventDefault();
-        axiosWithAuth()
-            .post('/api/login', this.state.userInfo)
-            .then(res => {
-                localStorage.setItem("token", res.data.payload);
-                this.props.history.push('/protected');
-            })
-            .catch(err => {
-                localStorage.removeItem("token");
-                console.log('invalid login: ', err);
-            });
-    };
-
-    render() {
-        return ( 
-            <div>
-                <form onSubmit = {this.handaleSubmit}>
-                    <input 
-                        type = "text"
-                        name = "username"
-                        placeholder = "Username"
-                        value = {this.state.userInfo.username }
-                        onChange = {this.handleChanges}
-                    />
-
-                    <input
-                        type = "password"
-                        name = "password"
-                        placeholder = "Password"
-                        value = {this.state.userInfo.password}
-                        onChange = {this.handleChanges}
-                    /> 
-                    <button> LogIn </button>
-
-                </form> 
-            </div>
-        )
-    }
+const initialState = {
+  username: '',
+  password: '',
 }
-export default LoginForm;
+
+const LoginForm = props => {
+  const [userInfo, setUserInfo] = useState(initialState)
+
+  const handleChanges = e => {
+    setUserInfo({
+      ...userInfo,
+      [e.target.name]: e.target.value,
+    })
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    props.postLogin(userInfo)
+  }
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type='text'
+          name='username'
+          placeholder='Username'
+          value={userInfo.username}
+          onChange={handleChanges}
+        />
+
+        <input
+          type='password'
+          name='password'
+          placeholder='Password'
+          value={userInfo.password}
+          onChange={handleChanges}
+        />
+        <button> LogIn </button>
+        {props.isFetching && <p>Loading...</p>}
+        {props.error && <p>Error logging in</p>}
+      </form>
+    </div>
+  )
+}
+
+const mapStateToProps = state => {
+  return {
+    isFetching: state.isFetching,
+    error: state.error,
+  }
+}
+
+export default connect(mapStateToProps, { postLogin })(LoginForm)
