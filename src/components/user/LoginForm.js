@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { axiosWithAuth } from '../../utils/axiosWithAuth'
+// import { axiosWithAuth } from '../../utils/axiosWithAuth'
 
 import { postLogin } from '../../store/actions'
 
@@ -22,6 +22,7 @@ const LoginForm = props => {
   const handleSubmit = e => {
     e.preventDefault()
     props.postLogin(userInfo)
+    props.history.push('/recipe-list')
   }
 
   return (

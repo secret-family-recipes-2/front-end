@@ -5,6 +5,7 @@ import Registration from './components/user/Registration'
 import LoginForm from './components/user/LoginForm'
 import AddNewRecipe from './components/recipes/AddRecipe'
 import EditRecipe from './components/recipes/EditRecipe'
+import RecipeList from './components/recipes/RecipeList'
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <div>
           <Link exact to= "/add-recipe">Add Recipe</Link>
           <Link exact to= "/edit-recipe">Edit Recipe</Link>
+          <Link exact to= "/recipe-list">Recipe list</Link>
           <Link to="/login">LogIn</Link>
           <Link to="/registration">SignUp</Link>
         </div>
@@ -22,6 +24,7 @@ const App = () => {
       <Route path='/login' component ={LoginForm} />
       <Route exact path='/add-recipe' component ={AddNewRecipe}/>
       <Route exact path='/edit-recipe' component ={EditRecipe}/>
+      <Route exact path='/recipe-list' component ={RecipeList}/>
     </div>
   )
 }
