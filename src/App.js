@@ -9,17 +9,16 @@ const App = () => {
   return (
     <div>
       <nav className="nav-links">
-      <h2>Secret Family Recipes Cookbook</h2>
-      <div>
-      
-      <Link to="/login">LogIn</Link>
-      <Link to="/registration">SignUp</Link>
-      </div>
+        <h2>Secret Family Recipes Cookbook</h2>
+        <div>
+          <Link to="/login">LogIn</Link>
+          <Link to="/registration">SignUp</Link>
+        </div>
       </nav>
-      
       <Route path='/registration' exact component={Registration} />
       <Route path='/login' component ={LoginForm} />
-      <AddNewRecipe/> 
+      <Route exact path='/add-recipe' component ={AddNewRecipe}/>
+      
     </div>
   )
 }
