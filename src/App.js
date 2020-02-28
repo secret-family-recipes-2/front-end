@@ -3,42 +3,41 @@ import { Switch, Route, Link, Redirect, useHistory } from 'react-router-dom'
 
 import ProtectedRoute from './utils/ProtectedRoute'
 
-import RegistrationForm from './components/user/RegistrationForm'
 import LoginForm from './components/user/LoginForm'
 import AddNewRecipe from './components/recipes/AddRecipe'
-import EditRecipe from './components/recipes/EditRecipe'
 import RecipeList from './components/recipes/RecipeList'
+import RegistrationForm from './components/user/RegistrationForm'
+import Navigation from './components/Navigation'
 
 const App = () => {
-  const history = useHistory()
+  // const history = useHistory()
 
-  const logout = e => {
-    e.preventDefault()
-    localStorage.removeItem('token')
-    history.push('/login')
-  }
+  // const logout = e => {
+  //   e.preventDefault()
+  //   localStorage.removeItem('token')
+  //   history.push('/login')
+  // }
 
   return (
     <div>
-      <nav className='nav-links'>
+      {/* <nav className='nav-links'>
         <h2>Secret Family Recipes Cookbook</h2>
         <div>
           <Link to='/recipes'>View Recipes</Link>
           <Link to='/addrecipe'>Add Recipe</Link>
-          <Link to='/edit-recipe'>Edit Recipe</Link>
           <Link to='/login'>Log In</Link>
           <Link to='/registration'>Sign Up</Link>
           <Link to='#' onClick={logout}>
             Log Out
           </Link>
         </div>
-      </nav>
+      </nav> */}
+      <Navigation />
 
       {/* Switch just checks each path in order down the list */}
       <Switch>
         {/* Protected routes check for a token, and redirect to the login if there is none */}
         <ProtectedRoute path='/addrecipe' component={AddNewRecipe} />
-        <Route exact path='/edit-recipe' component={EditRecipe} />
         <ProtectedRoute path='/recipes' component={RecipeList} />
         <Route path='/registration' component={RegistrationForm} />
         <Route path='/login' component={LoginForm} />
