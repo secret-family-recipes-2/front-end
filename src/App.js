@@ -19,7 +19,7 @@ const App = () => {
       
       <Route path='/registration' exact component={Registration} />
       <Route path='/login' component ={LoginForm} />
-      {/* <AddNewRecipe/> here temporary  */}
+      <AddNewRecipe/> 
     </div>
   )
 }
