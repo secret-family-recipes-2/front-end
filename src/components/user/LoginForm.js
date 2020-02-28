@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-// import { axiosWithAuth } from '../../utils/axiosWithAuth'
-
+import { axiosWithAuth } from '../../utils/axiosWithAuth'
+import { Redirect, useHistory } from 'react-router-dom'
 import { postLogin } from '../../store/actions'
 
 const initialState = {
@@ -24,7 +24,7 @@ const LoginForm = props => {
   const handleSubmit = e => {
     e.preventDefault()
     props.postLogin(userInfo)
-    history.push('/recipes')
+   history.push('/recipes')
   }
 
   if (localStorage.getItem('token')) {
