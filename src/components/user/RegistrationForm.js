@@ -1,17 +1,20 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 import { postRegister } from '../../store/actions'
 
 const RegistrationForm = props => {
+  const history = useHistory()
   const { registerUser } = props
   const [chef, addChef] = useState({ username: '', password: '' })
 
-  const submitChef = newbie => {
+  const submitChef = async newbie => {
     newbie.preventDefault()
-    props.postRegister(chef)
+    await props.postRegister(chef)
     registerUser(chef)
     addChef({ name: '', email: '', password: '' })
+    history.push('/recipes')
   }
 
   const updateChef = update =>

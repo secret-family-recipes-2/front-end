@@ -10,6 +10,7 @@ const initialState = {
 }
 
 const LoginForm = props => {
+  const history = useHistory()
   const [userInfo, setUserInfo] = useState(initialState)
 
   const handleChanges = e => {
@@ -19,36 +20,41 @@ const LoginForm = props => {
     })
   }
 
-  const handleSubmit = e => {
+  // POST request handled through Redux
+  const handleSubmit = async e => {
     e.preventDefault()
-    props.postLogin(userInfo)
-    props.history.push('/recipe-list')
+    await props.postLogin(userInfo)
+    history.push('/recipes')
   }
 
-  return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type='text'
-          name='username'
-          placeholder='Username'
-          value={userInfo.username}
-          onChange={handleChanges}
-        />
+  if (localStorage.getItem('token')) {
+    return <Redirect to='/recipes' />
+  } else {
+    return (
+      <div>
+        <form onSubmit={handleSubmit}>
+          <input
+            type='text'
+            name='username'
+            placeholder='Username'
+            value={userInfo.username}
+            onChange={handleChanges}
+          />
 
-        <input
-          type='password'
-          name='password'
-          placeholder='Password'
-          value={userInfo.password}
-          onChange={handleChanges}
-        />
-        <button> LogIn </button>
-        {props.isFetching && <p>Loading...</p>}
-        {props.error && <p>Error logging in</p>}
-      </form>
-    </div>
-  )
+          <input
+            type='password'
+            name='password'
+            placeholder='Password'
+            value={userInfo.password}
+            onChange={handleChanges}
+          />
+          <button> LogIn </button>
+          {props.isFetching && <p>Loading...</p>}
+          {props.error && <p>Error logging in</p>}
+        </form>
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = state => {
