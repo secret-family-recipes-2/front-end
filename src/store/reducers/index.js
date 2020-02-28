@@ -2,6 +2,9 @@ import {
   POST_LOGIN_START,
   POST_LOGIN_SUCCESS,
   POST_LOGIN_FAILURE,
+  POST_REGISTER_START,
+  POST_REGISTER_SUCCESS,
+  POST_REGISTER_FAILURE,
 } from '../actions'
 
 const initialState = {
@@ -28,6 +31,23 @@ const reducer = (state = initialState, action) => {
         user: { id: action.payload },
       }
     case POST_LOGIN_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        error: action.payload,
+      }
+    case POST_REGISTER_START:
+      return {
+        ...state,
+        isFetching: true,
+        error: '',
+      }
+    case POST_REGISTER_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+      }
+    case POST_REGISTER_FAILURE:
       return {
         ...state,
         isFetching: false,
