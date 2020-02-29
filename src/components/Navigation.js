@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
+import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
 
 const Navigation = () => {
   const history = useHistory()
@@ -11,23 +12,45 @@ const Navigation = () => {
   }
 
   return (
-    <nav className='nav-links'>
-      <h2>Secret Family Recipes Cookbook</h2>
+    <Navbar color='faded' light className='nav-links'>
+      <Link to='/'>
+        <NavbarBrand className='mr-auto'>
+          Secret Family Recipes Cookbook
+        </NavbarBrand>
+      </Link>
+
+      {/* display view recipes, add recipe, and log out if user has token, else display log in and sign up */}
       {localStorage.getItem('token') ? (
-        <div>
-          <Link to='/recipes'>View Recipes</Link>
-          <Link to='/addrecipe'>Add Recipe</Link>
-          <Link to='#' onClick={logout}>
-            Log Out
+        <Nav>
+          <Link to='/recipes'>
+            <NavItem>
+              <NavLink>View Recipes</NavLink>
+            </NavItem>
           </Link>
-        </div>
+          <Link to='/addrecipe'>
+            <NavItem>
+              <NavLink>Add Recipe</NavLink>
+            </NavItem>
+          </Link>
+          <NavItem onClick={logout}>
+            <NavLink>Log Out</NavLink>
+          </NavItem>
+        </Nav>
       ) : (
-        <div>
-          <Link to='/login'>Log In</Link>
-          <Link to='/registration'>Sign Up</Link>
-        </div>
+        <Nav>
+          <Link to='/login'>
+            <NavItem>
+              <NavLink href='#'>Log In</NavLink>
+            </NavItem>
+          </Link>
+          <Link to='/registration'>
+            <NavItem>
+              <NavLink href='#'>Sign Up</NavLink>
+            </NavItem>
+          </Link>
+        </Nav>
       )}
-    </nav>
+    </Navbar>
   )
 }
 
