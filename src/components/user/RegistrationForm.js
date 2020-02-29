@@ -6,6 +6,8 @@ import * as Yup from 'yup'
 
 import { postRegister } from '../../store/actions'
 
+import FormTemplate from './FormTemplate'
+
 const DisplayForm = props => {
   const history = useHistory()
 
@@ -35,6 +37,15 @@ const DisplayForm = props => {
         </div>
       </Form>
     </div>
+
+    // <FormTemplate
+    //   formName='Sign Up'
+    //   username={props.values.username}
+    //   password={props.values.password}
+    //   handleSubmit={handleSubmit}
+    //   touched={props.touched}
+    //   errors={props.errors}
+    // />
   )
 }
 

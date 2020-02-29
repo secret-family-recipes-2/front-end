@@ -1,8 +1,23 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Redirect, useHistory } from 'react-router-dom'
+import styled from 'styled-components'
+import {
+  Container,
+  Row,
+  Col,
+  Form as ReactForm,
+  FormGroup,
+  Label,
+  Input,
+} from 'reactstrap'
 
 import { postLogin } from '../../store/actions'
+
+const Form = styled(ReactForm)`
+  margin-top: 150px;
+  width: 100%;
+`
 
 const initialState = {
   username: '',
@@ -13,7 +28,7 @@ const LoginForm = props => {
   const history = useHistory()
   const [userInfo, setUserInfo] = useState(initialState)
 
-  const handleChanges = e => {
+  const handleChange = e => {
     setUserInfo({
       ...userInfo,
       [e.target.name]: e.target.value,
@@ -31,28 +46,38 @@ const LoginForm = props => {
     return <Redirect to='/recipes' />
   } else {
     return (
-      <div>
-        <form onSubmit={handleSubmit}>
-          <input
-            type='text'
-            name='username'
-            placeholder='Username'
-            value={userInfo.username}
-            onChange={handleChanges}
-          />
-
-          <input
-            type='password'
-            name='password'
-            placeholder='Password'
-            value={userInfo.password}
-            onChange={handleChanges}
-          />
-          <button> LogIn </button>
-          {props.isFetching && <p>Loading...</p>}
-          {props.error && <p>Error logging in</p>}
-        </form>
-      </div>
+      <Container>
+        <Row>
+          <Col xs='12' md={{ size: 6, offset: 3 }}>
+            <Form onSubmit={handleSubmit}>
+              <FormGroup>
+                <Label for='username-field'>Username</Label>
+                <Input
+                  type='text'
+                  name='username'
+                  id='username-field'
+                  placeholder='Username'
+                  value={userInfo.username}
+                  onChange={handleChange}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for='password-field'>Password</Label>
+                <Input
+                  type='password'
+                  name='password'
+                  id='password-field'
+                  placeholder='Password'
+                  value={userInfo.password}
+                  onChange={handleChange}
+                />
+              </FormGroup>
+              <button>Log In</button>
+            </Form>
+            {props.isFetching && <p>Loading...</p>}
+          </Col>
+        </Row>
+      </Container>
     )
   }
 }

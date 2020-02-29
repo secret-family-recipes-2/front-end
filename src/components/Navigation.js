@@ -40,12 +40,12 @@ const Navigation = () => {
         <Nav>
           <Link to='/login'>
             <NavItem>
-              <NavLink href='#'>Log In</NavLink>
+              <NavLink>Log In</NavLink>
             </NavItem>
           </Link>
           <Link to='/registration'>
             <NavItem>
-              <NavLink href='#'>Sign Up</NavLink>
+              <NavLink>Sign Up</NavLink>
             </NavItem>
           </Link>
         </Nav>
