@@ -10,16 +10,9 @@ import RegistrationForm from './components/user/RegistrationForm'
 import Navigation from './components/Navigation'
 
 const App = () => {
-  // const history = useHistory()
-
-  // const logout = e => {
-  //   e.preventDefault()
-  //   localStorage.removeItem('token')
-  //   history.push('/login')
-  // }
-
   return (
     <div>
+
       <Navigation />
 
       {/* Switch just checks each path in order down the list */}
