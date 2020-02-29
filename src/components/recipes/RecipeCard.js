@@ -12,7 +12,6 @@ import {
 } from 'reactstrap'
 
 const Card = styled(ReactCard)`
-  width: 318px;
   margin-bottom: 50px;
 `
 
@@ -22,7 +21,7 @@ const RecipeCard = props => {
       <CardImg
         top
         width='100%'
-        src='https://picsum.photos/318/180'
+        src='https://picsum.photos/636/360'
         alt='Recipe'
       />
       <CardBody>
@@ -31,6 +30,8 @@ const RecipeCard = props => {
         <Badge color='dark' pill>
           Category
         </Badge>
+      </CardBody>
+      <CardBody>
         <Button>View Recipe</Button>
       </CardBody>
     </Card>
