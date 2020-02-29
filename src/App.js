@@ -1,23 +1,16 @@
 import React from 'react'
-import { Switch, Route, Link, Redirect, useHistory } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 
 import ProtectedRoute from './utils/ProtectedRoute'
 
-import LoginForm from './components/user/LoginForm'
+// components
+import Navigation from './components/Navigation'
 import AddNewRecipe from './components/recipes/AddRecipe'
 import RecipeList from './components/recipes/RecipeList'
 import RegistrationForm from './components/user/RegistrationForm'
-import Navigation from './components/Navigation'
+import LoginForm from './components/user/LoginForm'
 
 const App = () => {
-  // const history = useHistory()
-
-  // const logout = e => {
-  //   e.preventDefault()
-  //   localStorage.removeItem('token')
-  //   history.push('/login')
-  // }
-
   return (
     <div>
       <Navigation />

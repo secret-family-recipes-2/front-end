@@ -7,19 +7,19 @@ const RecipeList = () => {
   return (
     <Container>
       <Row>
-        <Col>
+        <Col xs='12' sm='6' md='4'>
           <RecipeCard />
         </Col>
-        <Col>
+        <Col xs='12' sm='6' md='4'>
           <RecipeCard />
         </Col>
-        <Col>
+        <Col xs='12' sm='6' md='4'>
           <RecipeCard />
         </Col>
-        <Col>
+        <Col xs='12' sm='6' md='4'>
           <RecipeCard />
         </Col>
-        <Col>
+        <Col xs='12' sm='6' md='4'>
           <RecipeCard />
         </Col>
       </Row>
