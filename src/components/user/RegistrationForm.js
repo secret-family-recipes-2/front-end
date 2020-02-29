@@ -18,8 +18,8 @@ const DisplayForm = props => {
     <div className='registration-form'>
       <Form onSubmit={() => handleSubmit(props.values)}>
         <div>
-          {props.touched.name && props.errors.name && (
-            <p>{props.errors.name}</p>
+          {props.touched.username && props.errors.username && (
+            <p>{props.errors.username}</p>
           )}
           <Field type='text' name='username' placeholder='Username' />
         </div>
@@ -46,7 +46,7 @@ const RegistrationForm = withFormik({
     }
   },
   validationSchema: Yup.object().shape({
-    name: Yup.string()
+    username: Yup.string()
       .min(2, 'Username requires at least 2 characters')
       .max(50, 'Username cannot be more than 50 characters')
       .required('You need a username'),
