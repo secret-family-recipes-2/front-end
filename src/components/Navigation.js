@@ -32,9 +32,11 @@ const Navigation = () => {
               <NavLink>Add Recipe</NavLink>
             </NavItem>
           </Link>
-          <NavItem onClick={logout}>
-            <NavLink>Log Out</NavLink>
-          </NavItem>
+          <Link to='#'>
+            <NavItem onClick={logout}>
+              <NavLink>Log Out</NavLink>
+            </NavItem>
+          </Link>
         </Nav>
       ) : (
         <Nav>
