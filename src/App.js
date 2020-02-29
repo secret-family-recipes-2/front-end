@@ -20,18 +20,6 @@ const App = () => {
 
   return (
     <div>
-      {/* <nav className='nav-links'>
-        <h2>Secret Family Recipes Cookbook</h2>
-        <div>
-          <Link to='/recipes'>View Recipes</Link>
-          <Link to='/addrecipe'>Add Recipe</Link>
-          <Link to='/login'>Log In</Link>
-          <Link to='/registration'>Sign Up</Link>
-          <Link to='#' onClick={logout}>
-            Log Out
-          </Link>
-        </div>
-      </nav> */}
       <Navigation />
 
       {/* Switch just checks each path in order down the list */}

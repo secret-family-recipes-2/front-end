@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import {
   Card as ReactCard,
   CardImg,
-  CardText,
   CardBody,
   CardTitle,
   CardSubtitle,
@@ -27,19 +26,11 @@ const RecipeCard = props => {
         alt='Recipe'
       />
       <CardBody>
-        <CardTitle>Name</CardTitle>
+        <CardTitle>Title</CardTitle>
         <CardSubtitle>Source</CardSubtitle>
         <Badge color='dark' pill>
-          Category 1
+          Category
         </Badge>
-        <Badge color='dark' pill>
-          Category 2
-        </Badge>
-        <CardText>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et
-          lobortis elit. Integer vel urna sed libero vulputate ornare in ut
-          odio.
-        </CardText>
         <Button>View Recipe</Button>
       </CardBody>
     </Card>
