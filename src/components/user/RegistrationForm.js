@@ -77,7 +77,7 @@ const RegistrationForm = withFormik({
     }
   },
   validationSchema: Yup.object().shape({
-    name: Yup.string()
+    username: Yup.string()
       .min(2, 'Username requires at least 2 characters')
       .max(50, 'Username cannot be more than 50 characters')
       .required('You need a username'),

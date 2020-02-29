@@ -13,6 +13,7 @@ import LoginForm from './components/user/LoginForm'
 const App = () => {
   return (
     <div>
+
       <Navigation />
 
       {/* Switch just checks each path in order down the list */}
