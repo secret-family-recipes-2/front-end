@@ -59,7 +59,7 @@ const DisplayForm = props => {
                   placeholder='Password'
                 />
               </FormGroup>
-              <button>Log In</button>
+              <button>Register</button>
             </Form>
           </FormikForm>
           {props.isFetching && <p>Loading...</p>}
