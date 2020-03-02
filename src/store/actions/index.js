@@ -8,6 +8,10 @@ export const POST_REGISTER_START = 'POST_REGISTER_START'
 export const POST_REGISTER_SUCCESS = 'POST_REGISTER_SUCCESS'
 export const POST_REGISTER_FAILURE = 'POST_REGISTER_FAILURE'
 
+export const POST_ADDRECIPE_START = 'POST_ADDRECIPE_START'
+export const POST_ADDRECIPE_SUCCESS = 'POST_ADDRECIPE_SUCCESS'
+export const POST_ADDRECIPE_FAILURE = 'POST_ADDRECIPE_FAILURE'
+
 export const postLogin = credentials  => dispatch => {
   dispatch({ type: POST_LOGIN_START })
 
@@ -40,3 +44,28 @@ export const postRegister = credentials => dispatch => {
       dispatch({ type: POST_REGISTER_FAILURE, payload: err.data })
     })
 }
+
+export const postAddRecipe = credentials => dispatch => {
+  dispatch ({
+    type: POST_ADDRECIPE_START,
+    payload: credentials
+  });
+  console.log ("credentials in post add", credentials);
+  axiosWithAuth()
+  .post('/recipes', credentials)
+  .then(res => {
+    console.log (res)
+    dispatch({
+      type: POST_ADDRECIPE_SUCCESS,
+      payload: res.data
+    });
+  })
+  .catch(err => {
+    console.log(err);
+    dispatch({
+      type:POST_ADDRECIPE_FAILURE,
+      payload:"error postind data"
+    });
+  });
+};
+
