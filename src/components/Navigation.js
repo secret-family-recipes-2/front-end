@@ -1,9 +1,10 @@
 import React from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory, useLocation } from 'react-router-dom'
 import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
 
 const Navigation = () => {
   const history = useHistory()
+  const location = useLocation()
 
   const logout = e => {
     e.preventDefault()
@@ -13,22 +14,28 @@ const Navigation = () => {
 
   return (
     <Navbar color='faded' light className='nav-links'>
-      <Link to='/'>
-        <NavbarBrand className='mr-auto'>
-          Secret Family Recipes Cookbook
-        </NavbarBrand>
-      </Link>
+      <NavbarBrand tag={Link} to='/' className='mr-auto'>
+        Secret Family Recipes Cookbook
+      </NavbarBrand>
 
       {/* display view recipes, add recipe, and log out if user has token, else display log in and sign up */}
       {localStorage.getItem('token') ? (
         <Nav>
           <NavItem>
-            <NavLink tag={Link} to='/recipes'>
+            <NavLink
+              tag={Link}
+              to='/recipes'
+              className={location.pathname === '/recipes' ? 'active' : ''}
+            >
               View Recipes
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to='/addrecipe'>
+            <NavLink
+              tag={Link}
+              to='/addrecipe'
+              className={location.pathname === '/addrecipe' ? 'active' : ''}
+            >
               Add Recipe
             </NavLink>
           </NavItem>
@@ -41,12 +48,20 @@ const Navigation = () => {
       ) : (
         <Nav>
           <NavItem>
-            <NavLink tag={Link} to='/login'>
+            <NavLink
+              tag={Link}
+              to='/login'
+              className={location.pathname === '/login' ? 'active' : ''}
+            >
               Log In
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to='/registration'>
+            <NavLink
+              tag={Link}
+              to='/registration'
+              className={location.pathname === '/registration' ? 'active' : ''}
+            >
               Sign Up
             </NavLink>
           </NavItem>
