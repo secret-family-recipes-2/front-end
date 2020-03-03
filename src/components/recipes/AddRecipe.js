@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
     const initialState = {
         title:'',
         source:'',
+        ingredients:'',
         instructions:'',
         category:''
     };
@@ -31,6 +32,7 @@ const AddNewRecipe = props => {
             postAddRecipe({
                 title:newRecipe.title,
                 source:newRecipe.source,
+                ingredients: newRecipe.ingredients,
                 instructions:newRecipe.instructions,
                 category:newRecipe.category,
                 id:Date.now()

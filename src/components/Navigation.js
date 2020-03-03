@@ -22,34 +22,34 @@ const Navigation = () => {
       {/* display view recipes, add recipe, and log out if user has token, else display log in and sign up */}
       {localStorage.getItem('token') ? (
         <Nav>
-          <Link to='/recipes'>
-            <NavItem>
-              <NavLink>View Recipes</NavLink>
-            </NavItem>
-          </Link>
-          <Link to='/addrecipe'>
-            <NavItem>
-              <NavLink>Add Recipe</NavLink>
-            </NavItem>
-          </Link>
-          <Link to='#'>
-            <NavItem onClick={logout}>
-              <NavLink>Log Out</NavLink>
-            </NavItem>
-          </Link>
+          <NavItem>
+            <NavLink tag={Link} to='/recipes'>
+              View Recipes
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink tag={Link} to='/addrecipe'>
+              Add Recipe
+            </NavLink>
+          </NavItem>
+          <NavItem onClick={logout}>
+            <NavLink tag={Link} to='#'>
+              Log Out
+            </NavLink>
+          </NavItem>
         </Nav>
       ) : (
         <Nav>
-          <Link to='/login'>
-            <NavItem>
-              <NavLink>Log In</NavLink>
-            </NavItem>
-          </Link>
-          <Link to='/registration'>
-            <NavItem>
-              <NavLink>Sign Up</NavLink>
-            </NavItem>
-          </Link>
+          <NavItem>
+            <NavLink tag={Link} to='/login'>
+              Log In
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink tag={Link} to='/registration'>
+              Sign Up
+            </NavLink>
+          </NavItem>
         </Nav>
       )}
     </Navbar>
