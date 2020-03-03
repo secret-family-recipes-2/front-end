@@ -2,6 +2,7 @@ import React, { useState }  from 'react';
 //import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import { postAddRecipe } from '../../store/actions';
+// import { getData } from '../../store/actions'
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -13,7 +14,7 @@ import { useDispatch } from 'react-redux';
         category:''
     };
 
-const AddNewRecipe = props => {
+const AddNewRecipe = () => {
      const [ newRecipe, setNewRecipe ] = useState (initialState);
 
      const history = useHistory()
@@ -35,22 +36,17 @@ const AddNewRecipe = props => {
                 ingredients: newRecipe.ingredients,
                 instructions:newRecipe.instructions,
                 category:newRecipe.category,
-                id:Date.now()
+                user_id: 1
             })   
          )
          setNewRecipe(``);
          history.push('/recipes')
-        // axiosWithAuth()
-        //   .post('/api/recipes', newRecipe)
-        //   .then(res => {
-        //       console.log ("Response in the POST request AddNewRecipe", res)
-        //       setNewRecipe(res.data)
-        //       props.history.push('/');
-        //   })
-        //   .catch(err => {
-        //     console.log(err);
-        //   });
     };
+
+//   const handleGetData = e => {
+//     e.preventDefault();
+//     getData();
+// }
     return (
         <Form onSubmit={handleSubmit}>
             <FormGroup>
@@ -76,6 +72,17 @@ const AddNewRecipe = props => {
                 />
             </FormGroup>
             <FormGroup>
+                <Label for="ingredients">ingredients</Label>
+                <Input 
+                    type="text" 
+                    name="ingredients" 
+                    id="ingredients" 
+                    placeholder="ingredients"
+                    onChange={handleChange}
+                    value={newRecipe.ingredients}
+                />
+            </FormGroup>
+            <FormGroup>
                 <Label for="category">Category</Label>
                 <Input 
                     type="select" 
@@ -84,11 +91,15 @@ const AddNewRecipe = props => {
                     onChange={handleChange}
                     value={newRecipe.category}
                 >
-                    <option>Diner</option>
-                    <option>Dessert</option>
+                    <option>Add category</option>
+                    <option>Lunch</option>
                     <option>Breakfast</option>
-                    <option>Drink</option>
+                    <option>Diner</option>
                     <option>Cookies</option>
+                    <option>Dessert</option>
+                    <option>Bread</option>
+                    <option>Salad</option>
+                    <option>Soup</option>
                 </Input>
             </FormGroup>
             <FormGroup>
@@ -105,6 +116,7 @@ const AddNewRecipe = props => {
                 <Label for="image">File</Label>
                 <Input type="file" name="image" id="image" />
             </FormGroup>
+           
         <Button type= "submit"  
         // onClick={ ()=> props.history.push("/recipes")}
         >Submit</Button>

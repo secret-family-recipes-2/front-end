@@ -12,6 +12,7 @@ const Navigation = () => {
     history.push('/login')
   }
 
+
   return (
     <Navbar color='faded' light className='nav-links'>
       <NavbarBrand tag={Link} to='/' className='mr-auto'>

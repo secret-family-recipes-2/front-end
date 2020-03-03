@@ -8,6 +8,9 @@ import {
   POST_ADDRECIPE_START,
   POST_ADDRECIPE_SUCCESS,
   POST_ADDRECIPE_FAILURE,
+  // FETCH_DATA_START,
+  // FETCH_DATA_SUCCESS,
+  // FETCH_DATA_FAILURE,
 } from '../actions'
 
 const initialState = {
@@ -56,6 +59,24 @@ const reducer = (state = initialState, action) => {
         isFetching: false,
         error: action.payload,
       }
+      // case FETCH_DATA_START:
+      //   return {
+      //     ...state,
+      //     isFetching: true,
+      //     error: '',
+      //   }
+      // case FETCH_DATA_SUCCESS:
+      //   return {
+      //     ...state,
+      //     recipes:action.payload,
+      //     isFetching: false,
+      //   }
+      // case FETCH_DATA_FAILURE:
+      //   return {
+      //     ...state,
+      //     isFetching: false,
+      //     error: action.payload,
+      //   }
       case POST_ADDRECIPE_START:
         return {
           ...state,
@@ -63,9 +84,10 @@ const reducer = (state = initialState, action) => {
           error: '',
         }
       case POST_ADDRECIPE_SUCCESS:
+        console.log("action.payload in reducers", action.payload)
         return {
           ...state,
-          recipes:action.payload,
+          recipes:[...state.recipes, action.payload],
           isFetching: false,
         }
       case POST_ADDRECIPE_FAILURE:
