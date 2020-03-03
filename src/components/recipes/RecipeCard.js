@@ -9,6 +9,7 @@ import {
   CardSubtitle,
   Button,
   Badge,
+  CardText
 } from 'reactstrap'
 
 const Card = styled(ReactCard)`
@@ -17,24 +18,31 @@ const Card = styled(ReactCard)`
 
 const RecipeCard = props => {
   return (
-    <Card>
-      <CardImg
-        top
-        width='100%'
-        src='https://picsum.photos/636/360'
-        alt='Recipe'
-      />
-      <CardBody>
-        <CardTitle>Title</CardTitle>
-        <CardSubtitle>Source</CardSubtitle>
-        <Badge color='dark' pill>
-          Category
-        </Badge>
-      </CardBody>
-      <CardBody>
-        <Button>View Recipe</Button>
-      </CardBody>
-    </Card>
+    <div>
+      {props.recipe.map( item => {
+      return (
+        <Card>
+          <CardImg
+            top
+            width='100%'
+            src='https://picsum.photos/636/360'
+            alt='Recipe'
+          />
+          <CardBody>
+            <CardTitle>Title: {item.title}</CardTitle>
+            <CardSubtitle>Source: {item.source}</CardSubtitle>
+              <Badge color='dark' pill>
+                Category: {item.category}
+              </Badge>
+            <CardText>Instructions: {item.instructions}</CardText>
+             </CardBody>
+          <CardBody>
+            <Button>View Recipe</Button>
+          </CardBody>
+        </Card>
+      )
+    })}
+    </div>
   )
 }
 

@@ -1,11 +1,14 @@
 import React, { useState }  from 'react'; 
-import { axiosWithAuth } from "../../utils/axiosWithAuth";
+//import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { Button, Form, FormGroup, Label, Input} from 'reactstrap';
-
+import { postAddRecipe } from '../../store/actions';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
     const initialState = {
         title:'',
         source:'',
+        ingredients:'',
         instructions:'',
         category:''
     };
@@ -13,22 +16,40 @@ import { Button, Form, FormGroup, Label, Input} from 'reactstrap';
 const AddNewRecipe = props => {
      const [ newRecipe, setNewRecipe ] = useState (initialState);
 
-    //  const handleTextInput = e => {
-    //     let value = e.target.value 
-    //     setNewRecipe({ ...initialState,  [e.target.name]: value});
-    //  };  
+     const history = useHistory()
+     const dispatch = useDispatch();
+
+     const handleChange = e => { 
+        setNewRecipe({
+             ...newRecipe, 
+              [e.target.name]: e.target.value,
+        })
+     };  
 
      const handleSubmit = e => {
-        axiosWithAuth()
-          .post('/api/auth/recipe', newRecipe)
-          .then(res => {
-              console.log ("Response in the POST request AddNewRecipe", res)
-              setNewRecipe(res.data)
-              props.history.push('/');
-          })
-          .catch(err => {
-            console.log(err);
-          });
+         e.preventDefault();
+         dispatch(
+            postAddRecipe({
+                title:newRecipe.title,
+                source:newRecipe.source,
+                ingredients: newRecipe.ingredients,
+                instructions:newRecipe.instructions,
+                category:newRecipe.category,
+                id:Date.now()
+            })   
+         )
+         setNewRecipe(``);
+         history.push('/recipes')
+        // axiosWithAuth()
+        //   .post('/api/recipes', newRecipe)
+        //   .then(res => {
+        //       console.log ("Response in the POST request AddNewRecipe", res)
+        //       setNewRecipe(res.data)
+        //       props.history.push('/');
+        //   })
+        //   .catch(err => {
+        //     console.log(err);
+        //   });
     };
     return (
         <Form onSubmit={handleSubmit}>
@@ -36,10 +57,10 @@ const AddNewRecipe = props => {
                 <Label for="title">Name</Label>
                 <Input 
                     type="text" 
-                    name="email" 
+                    name="title" 
                     id="title" 
                     placeholder="title"
-                    onChange={ e =>{ setNewRecipe({...newRecipe, title:e.target.value})}}
+                    onChange={handleChange}
                     value={newRecipe.title} 
                 />
             </FormGroup>
@@ -50,7 +71,7 @@ const AddNewRecipe = props => {
                     name="source" 
                     id="source" 
                     placeholder="source"
-                    onChange={e =>{ setNewRecipe ({...newRecipe,  source:e.target.value})}}
+                    onChange={handleChange}
                     value={newRecipe.source}
                 />
             </FormGroup>
@@ -60,7 +81,7 @@ const AddNewRecipe = props => {
                     type="select" 
                     name="category" 
                     id="category"
-                    onChange={e =>{ setNewRecipe ({...newRecipe,  category:e.target.value})}}
+                    onChange={handleChange}
                     value={newRecipe.category}
                 >
                     <option>Diner</option>
@@ -76,7 +97,7 @@ const AddNewRecipe = props => {
                     type="textarea" 
                     name="instructions" 
                     id="instructions" 
-                    onChange={e =>{ setNewRecipe ({...newRecipe,  instructions:e.target.value})}}
+                    onChange={handleChange}
                     value={newRecipe.instructions}
                 />
             </FormGroup>
@@ -84,9 +105,10 @@ const AddNewRecipe = props => {
                 <Label for="image">File</Label>
                 <Input type="file" name="image" id="image" />
             </FormGroup>
-        <Button>Submit</Button>
+        <Button type= "submit"  
+        // onClick={ ()=> props.history.push("/recipes")}
+        >Submit</Button>
       </Form>
     )
-
  }
 export default AddNewRecipe;
