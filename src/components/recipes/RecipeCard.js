@@ -22,26 +22,29 @@ const RecipeCard = ({ recipe }) => {
     e.preventDefault()
     history.push(`/recipes/${recipe.id}`)
   }
-  return (
-    <Card>
-      <CardImg
-        top
-        width='100%'
-        src='https://picsum.photos/636/360'
-        alt='Recipe'
-      />
-      <CardBody>
-        <CardTitle>Title: {recipe.title}</CardTitle>
-        <CardSubtitle>Source: {recipe.source}</CardSubtitle>
-        <Badge color='dark' pill>
-          Category: {recipe.category}
-        </Badge>
-      </CardBody>
-      <CardBody>
-        <Button onClick={routeToRecipe}>View Recipe</Button>
-      </CardBody>
-    </Card>
-  )
+
+  if (recipe)
+    return (
+      <Card>
+        <CardImg
+          top
+          width='100%'
+          src='https://picsum.photos/636/360'
+          alt='Recipe'
+        />
+        <CardBody>
+          <CardTitle>Title: {recipe.title}</CardTitle>
+          <CardSubtitle>Source: {recipe.source}</CardSubtitle>
+          <Badge color='dark' pill>
+            Category: {recipe.category}
+          </Badge>
+        </CardBody>
+        <CardBody>
+          <Button onClick={routeToRecipe}>View Recipe</Button>
+        </CardBody>
+      </Card>
+    )
+  else return <></>
 }
 
 export default RecipeCard

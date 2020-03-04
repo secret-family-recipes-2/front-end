@@ -16,15 +16,7 @@ export const POST_ADDRECIPE_FAILURE = 'POST_ADDRECIPE_FAILURE'
 // export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS'
 // export const FETCH_DATA_FAILURE = 'FETCH_DATA_FAILURE'
 
-<<<<<<< HEAD
 export const postLogin = credentials => dispatch => {
-=======
-// export const PUT_EDIT_START = 'PUT_EDIT_START'
-// export const PUT_EDIT_SUCCESS = 'PUT_EDIT_SUCCESS'
-// export const PUT_EDIT_FAILURE = 'PUT_EDIT_FAILURE'
-
-export const postLogin = credentials  => dispatch => {
->>>>>>> e931dc2e15c9fb1c099683c490a55e414004876f
   dispatch({ type: POST_LOGIN_START })
 
   axiosWithAuth()
@@ -104,8 +96,6 @@ export const postAddRecipe = credentials => dispatch => {
 //     });
 //   });
 // };
-
-
 
 // export const getData = credentials => dispatch => {
 //   dispatch({
