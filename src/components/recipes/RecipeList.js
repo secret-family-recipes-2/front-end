@@ -19,6 +19,7 @@ const RecipeList = () => {
       .get('https://secret-recipes-2.herokuapp.com/api/recipes/allRecipes')
       .then(res => {
         setAllRecipes(res.data.filter(recipe => recipe.user_id === userId))
+        console.log(res)
         setIsFetching(false)
       })
       .catch(err => {
