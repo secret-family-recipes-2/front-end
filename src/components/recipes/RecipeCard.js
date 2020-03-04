@@ -9,46 +9,40 @@ import {
   CardSubtitle,
   Button,
   Badge,
-  CardText
+  CardText,
 } from 'reactstrap'
 
 const Card = styled(ReactCard)`
   margin-bottom: 50px;
 `
 
-const RecipeCard = props => {
+const RecipeCard = ({ recipe }) => {
   const history = useHistory()
-   const routeToRecipe = (e, item) =>{
-     e.preventDefault();
-     history.push(`/recipes/${item.id}`)
-   }
-   return (
-     <div>
-       {props.recipesList.map(item => {
-         return (
-          <Card key={item.id}>
-            <CardImg
-              top
-              width='100%'
-              src='https://picsum.photos/636/360'
-              alt='Recipe'
-            />
-            <CardBody>
-              <CardTitle>Title: {item.title}</CardTitle>
-              <CardSubtitle>Source: {item.source}</CardSubtitle>
-                <Badge color='dark' pill>
-                  Category: {item.category}
-                </Badge>
-              <CardText>Instructions: {item.instructions}</CardText>
-               </CardBody>
-            <CardBody>
-              <Button  onClick={ e => routeToRecipe(e, item)} key ={item.id} >View Recipe</Button>
-            </CardBody>
-          </Card>
-     )
-       })}
-     </div>
-   )
+  const routeToRecipe = e => {
+    e.preventDefault()
+    history.push(`/recipes/${recipe.id}`)
+  }
+  return (
+    <Card>
+      <CardImg
+        top
+        width='100%'
+        src='https://picsum.photos/636/360'
+        alt='Recipe'
+      />
+      <CardBody>
+        <CardTitle>Title: {recipe.title}</CardTitle>
+        <CardSubtitle>Source: {recipe.source}</CardSubtitle>
+        <Badge color='dark' pill>
+          Category: {recipe.category}
+        </Badge>
+        <CardText>Instructions: {recipe.instructions}</CardText>
+      </CardBody>
+      <CardBody>
+        <Button onClick={routeToRecipe}>View Recipe</Button>
+      </CardBody>
+    </Card>
+  )
 }
 
 export default RecipeCard
