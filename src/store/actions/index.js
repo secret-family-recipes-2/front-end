@@ -12,6 +12,11 @@ export const POST_ADDRECIPE_START = 'POST_ADDRECIPE_START'
 export const POST_ADDRECIPE_SUCCESS = 'POST_ADDRECIPE_SUCCESS'
 export const POST_ADDRECIPE_FAILURE = 'POST_ADDRECIPE_FAILURE'
 
+// export const FETCH_DATA_START = 'FETCH_DATA_START'
+// export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS'
+// export const FETCH_DATA_FAILURE = 'FETCH_DATA_FAILURE'
+
+
 export const postLogin = credentials  => dispatch => {
   dispatch({ type: POST_LOGIN_START })
 
@@ -54,10 +59,10 @@ export const postAddRecipe = credentials => dispatch => {
   axiosWithAuth()
   .post('/recipes', credentials)
   .then(res => {
-    console.log (res)
+    console.log ("postAddRecipe response", res)
     dispatch({
       type: POST_ADDRECIPE_SUCCESS,
-      payload: res.data
+      payload: res.data.created_recipe
     });
   })
   .catch(err => {
@@ -69,3 +74,25 @@ export const postAddRecipe = credentials => dispatch => {
   });
 };
 
+// export const getData = credentials => dispatch => {
+//   dispatch({
+//       type: FETCH_DATA_START, 
+//       payload: credentials
+//   });
+//   axiosWithAuth()
+//       .get(`/recipes/allRecipes`, credentials)
+//       .then(res => {
+//           console.log( res);
+//           dispatch({
+//               type: FETCH_DATA_SUCCESS,
+//               payload: res.data.created_recipe
+//           });
+//       })
+//       .catch(err => {
+//           console.error(err);
+//           dispatch({
+//               type: FETCH_DATA_FAILURE,
+//               payload: " error fetching data from the api"
+//           });
+//       });
+// };

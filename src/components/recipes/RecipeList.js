@@ -1,46 +1,17 @@
-import React, {useState} from 'react'
-import { Container, Row, Col } from 'reactstrap'
+import React from 'react';
+import { Container, Row, Col } from 'reactstrap';
+import { useSelector } from 'react-redux';
 
-import RecipeCard from './RecipeCard'
+import RecipeCard from './RecipeCard';
 
 const RecipeList = () => {
-  const [recipe, setRecipe] = useState([
-    {
-      title:"Tacos",
-      source:"Grandma",
-      category:"Diner",
-      instructions:"Make it good",
-      id:1
-    },
-    {
-      title:"Lasagna",
-      source:"Mom",
-      category:"Diner",
-      instructions:"Make it good",
-      id:2
-    },
-    {
-      title:"Tiramisu",
-      source:"Cook book",
-      category:"Dessert",
-      instructions:"Make it good",
-      id:3
-    }, 
-    {
-      title:"Wafles",
-      source:"Grandma",
-      category:"Breackfast",
-      instructions:"Make it sweet", 
-      id:4
-    }
-  ])
+ const recipesList =useSelector(state =>state.recipes)
   return (
     <Container>
       <Row>
         <Col xs='12' sm='6' md='4'>
-          <RecipeCard recipe={recipe}/>
+          <RecipeCard recipesList={recipesList}/>
         </Col>
-  
       </Row>
     </Container>
   )
