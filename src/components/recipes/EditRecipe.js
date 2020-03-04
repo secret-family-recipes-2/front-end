@@ -24,6 +24,8 @@ const EditRecipe = props => {
     //     }
     // },  []);
 
+   
+
     const changeHandler = ev => {
         ev.persist();
         setRecipe({...recipe, [ev.target.name]: ev.target.value });
@@ -36,7 +38,9 @@ const EditRecipe = props => {
           .put(`/recipes${recipe.id}`, recipe)
           .then(res => {
             console.log ("Response in the PUT request MovieEdit", res.data)
-            // props.history.push('/recipes')
+            setRecipe(res.data)
+            props.history.push('/recipes')
+            
           })
          
           .catch(err => {
@@ -49,7 +53,7 @@ const EditRecipe = props => {
             <Label for="title">Name</Label>
             <Input 
                 type="text" 
-                name="email" 
+                name="title" 
                 id="title" 
                 placeholder="title"
                 onChange={changeHandler}
@@ -76,11 +80,15 @@ const EditRecipe = props => {
                 onChange={changeHandler}
                 value={recipe.category}
             >
-                <option>Diner</option>
-                <option>Dessert</option>
-                <option>Breakfast</option>
-                <option>Drink</option>
-                <option>Cookies</option>
+                    <option>Add category</option>
+                    <option>Lunch</option>
+                    <option>Breakfast</option>
+                    <option>Diner</option>
+                    <option>Cookies</option>
+                    <option>Dessert</option>
+                    <option>Bread</option>
+                    <option>Salad</option>
+                    <option>Soup</option>
             </Input>
         </FormGroup>
         <FormGroup>

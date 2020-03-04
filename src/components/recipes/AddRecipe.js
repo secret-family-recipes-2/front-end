@@ -2,7 +2,6 @@ import React, { useState }  from 'react';
 //import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import { postAddRecipe } from '../../store/actions';
-// import { getData } from '../../store/actions'
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -42,11 +41,6 @@ const AddNewRecipe = () => {
          setNewRecipe(``);
          history.push('/recipes')
     };
-
-//   const handleGetData = e => {
-//     e.preventDefault();
-//     getData();
-// }
     return (
         <Form onSubmit={handleSubmit}>
             <FormGroup>
@@ -117,9 +111,7 @@ const AddNewRecipe = () => {
                 <Input type="file" name="image" id="image" />
             </FormGroup>
            
-        <Button type= "submit"  
-        // onClick={ ()=> props.history.push("/recipes")}
-        >Submit</Button>
+        <Button type= "submit">Submit</Button>
       </Form>
     )
  }
