@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { Container, Row, Col, Card, CardBody, CardImg } from 'reactstrap'
-import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux'
+import { axiosWithAuth } from '../../utils/axiosWithAuth'
 
 const Title = styled.div`
   margin-bottom: 20px;
@@ -18,13 +19,29 @@ const Btn = styled.button`
 `
 
 const RecipePage = props => {
-  const recipesList =useSelector(state =>state.recipes)
-  const { id } = useParams();
+  const { id } = useParams()
+  const [item, setItem] = useState({
+    id: id,
+    title: '',
+    source: '',
+    ingredients: '',
+    category: '',
+    private: true,
+    user_id: 1,
+  })
 
-  const item =recipesList.find(
-    element => `${element.id}`=== props.match.params.id
-  );
- console.log("item in  recipe page", recipesList)
+  useEffect(() => {
+    axiosWithAuth()
+      .get(`/recipes/${id}`)
+      .then(res => {
+        console.log(res)
+        setItem(res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }, [id])
+
   return (
     <Container>
       <Row>
@@ -33,11 +50,11 @@ const RecipePage = props => {
             <CardImg src='https://picsum.photos/1272/720' alt='title' />
             <CardBody>
               <Title>
-             {/* <h2>title{item.title}</h2> */}
-                <h4>By source</h4>
+                <h2>{item.title}</h2>
+                <h4>{item.source}</h4>
               </Title>
-              {/* <p>Ingredients: {item.ingredients}</p> */}
-              <p>Instructions: instructions</p>
+              <p>Ingredients: {item.ingredients}</p>
+              <p>Instructions: {item.instructions}</p>
               <BtnContainer>
                 <Btn>Edit Recipe</Btn>
                 <Btn>Delete Recipe</Btn>
