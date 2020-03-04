@@ -21,15 +21,7 @@ const Btn = styled.button`
 const RecipePage = props => {
   const { id } = useParams()
   const userId = Number(localStorage.getItem('userId'))
-  const [item, setItem] = useState({
-    id: 0,
-    title: '',
-    source: '',
-    ingredients: '',
-    category: '',
-    private: true,
-    user_id: 0,
-  })
+  const [item, setItem] = useState({})
 
   useEffect(() => {
     axiosWithAuth()
@@ -44,8 +36,10 @@ const RecipePage = props => {
   }, [id])
 
   if (item.user_id !== userId && item.user_id > 0)
-    return <div>Uh oh! You don't have access to this recipe!</div>
-  else
+    return (
+      <div className='status'>Uh oh! You don't have access to this recipe!</div>
+    )
+  else if (item)
     return (
       <Container>
         <Row>
