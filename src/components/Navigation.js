@@ -46,7 +46,7 @@ const Navigation = () => {
           </NavItem>
         </Nav>
       ) : (
-        <Nav>
+        <Nav className='nav-links'>
           <NavItem>
             <NavLink
               tag={Link}
