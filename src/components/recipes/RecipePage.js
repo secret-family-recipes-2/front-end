@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { Container, Row, Col, Card, CardBody, CardImg } from 'reactstrap'
 import { useSelector } from 'react-redux'
 import { axiosWithAuth } from '../../utils/axiosWithAuth'
+import { useHistory } from 'react-router-dom'
 
 const Title = styled.div`
   margin-bottom: 20px;
@@ -19,7 +20,9 @@ const Btn = styled.button`
 `
 
 const RecipePage = props => {
-  const { id } = useParams()
+  // const recipesList =useSelector(state =>state.recipes)
+  
+  const { id } = useParams();
   const [item, setItem] = useState({
     id: id,
     title: '',
@@ -34,7 +37,7 @@ const RecipePage = props => {
     axiosWithAuth()
       .get(`/recipes/${id}`)
       .then(res => {
-        console.log(res)
+        console.log("recipe page get response", res)
         setItem(res.data)
       })
       .catch(err => {
@@ -42,6 +45,12 @@ const RecipePage = props => {
       })
   }, [id])
 
+  const history = useHistory()
+
+  const routeToRecipeEdit = (e, item) =>{
+    e.preventDefault();
+    history.push(`/editrecipe/${item.id}`)  
+  }
   return (
     <Container>
       <Row>
@@ -56,7 +65,7 @@ const RecipePage = props => {
               <p>Ingredients: {item.ingredients}</p>
               <p>Instructions: {item.instructions}</p>
               <BtnContainer>
-                <Btn>Edit Recipe</Btn>
+                <Btn onClick ={ e => routeToRecipeEdit(e, item) } key ={item.id}>Edit Recipe</Btn>
                 <Btn>Delete Recipe</Btn>
                 <Btn>Return</Btn>
               </BtnContainer>
