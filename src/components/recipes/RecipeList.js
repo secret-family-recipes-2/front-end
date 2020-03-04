@@ -10,6 +10,7 @@ const RecipeList = () => {
   const userId = Number(localStorage.getItem('userId'))
   const [allRecipes, setAllRecipes] = useState([])
   const [err, setErr] = useState([])
+  const [isFetching, setIsFetching] = useState(true)
 
   console.log(userId)
 
@@ -18,10 +19,12 @@ const RecipeList = () => {
       .get('https://secret-recipes-2.herokuapp.com/api/recipes/allRecipes')
       .then(res => {
         setAllRecipes(res.data.filter(recipe => recipe.user_id === userId))
-        console.log('allRecipes', res)
+        setIsFetching(false)
       })
-
-      .catch(err => setErr(err))
+      .catch(err => {
+        setErr(err)
+        setIsFetching(false)
+      })
   }, [userId])
 
   const gotallRecipes = allRecipes.length !== 0 ? true : false
@@ -29,7 +32,8 @@ const RecipeList = () => {
 
   console.log(gotallRecipes)
 
-  if (gotallRecipes)
+  if (isFetching) return <div>Loading...</div>
+  else if (gotallRecipes)
     return (
       <Container>
         <Row>
@@ -48,7 +52,7 @@ const RecipeList = () => {
       </div>
     )
   else if (gotError) return <p>{err.message}</p>
-  else return <div>Loading...</div>
+  else return <></>
 }
 
 export default RecipeList

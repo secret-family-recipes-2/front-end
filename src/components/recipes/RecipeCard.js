@@ -36,7 +36,6 @@ const RecipeCard = ({ recipe }) => {
         <Badge color='dark' pill>
           Category: {recipe.category}
         </Badge>
-        <CardText>Instructions: {recipe.instructions}</CardText>
       </CardBody>
       <CardBody>
         <Button onClick={routeToRecipe}>View Recipe</Button>
