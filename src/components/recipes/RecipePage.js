@@ -65,7 +65,7 @@ const RecipePage = props => {
                     Edit Recipe
                   </Btn>
                   <Btn>Delete Recipe</Btn>
-                  <Btn>Return</Btn>
+                  <Btn onClick={() => history.push('/recipes')}>Return</Btn>
                 </BtnContainer>
               </CardBody>
             </Card>
