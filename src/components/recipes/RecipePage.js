@@ -42,6 +42,16 @@ const RecipePage = props => {
     history.push(`/editrecipe/${item.id}`)
   }
 
+  const deleteRecipe = (id) => {
+    axiosWithAuth()
+      .delete(`https://secret-recipes-2.herokuapp.com/api/recipes/${id}`)
+      .then(res => {
+        console.log('Delete:',res.data.message)
+        history.push('/recipes')
+      })
+      .catch(err => console.log(err))
+  }
+
   if (item.user_id !== userId && item.user_id > 0)
     return (
       <div className='status'>Uh oh! You don't have access to this recipe!</div>
@@ -64,7 +74,7 @@ const RecipePage = props => {
                   <Btn onClick={e => routeToRecipeEdit(e, item)} key={item.id}>
                     Edit Recipe
                   </Btn>
-                  <Btn>Delete Recipe</Btn>
+                  <Btn onClick={() => deleteRecipe(id)}>Delete Recipe</Btn>
                   <Btn onClick={() => history.push('/recipes')}>Return</Btn>
                 </BtnContainer>
               </CardBody>
