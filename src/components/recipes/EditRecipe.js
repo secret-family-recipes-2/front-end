@@ -1,30 +1,25 @@
-import React, { useState, useEffect }  from 'react'; 
+import React, { useState }  from 'react'; 
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import { useParams, useHistory } from 'react-router-dom'
 
+
+
+const EditRecipe = props => {
+   
+    const { id } = useParams();
+    const history = useHistory()
 
     const initialState = {
+        id:id,
         title:'',
         source:'',
         ingredients:'',
         instructions:'',
-        category:''
+        category:'',
+        user_id: 1
     };
-
-const EditRecipe = props => {
-   
     const [recipe, setRecipe ] = useState (initialState);
-
-    // useEffect (() => {
-    //     const selectedRecipe = props.list.find(item => {
-    //         return `${item.id}`=== props.match.params.id;
-    //     });
-    //     if(selectedRecipe){
-    //         setRecipe(selectedRecipe);
-    //     }
-    // },  []);
-
-   
 
     const changeHandler = ev => {
         ev.persist();
@@ -35,14 +30,13 @@ const EditRecipe = props => {
         console.log ("Put recipe in handle submit", recipe)
         e.preventDefault();
         axiosWithAuth()
-          .put(`/recipes${recipe.id}`, recipe)
+          .put(`/recipes/${recipe.id}`, recipe)
           .then(res => {
             console.log ("Response in the PUT request MovieEdit", res.data)
-            setRecipe(res.data)
-            props.history.push('/recipes')
+            setRecipe(res.data);
+            history.push('/recipes')
             
           })
-         
           .catch(err => {
             console.log(err);
           });

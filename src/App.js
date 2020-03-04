@@ -21,7 +21,7 @@ const App = () => {
       <Switch>
         {/* Protected routes check for a token, and redirect to the login if there is none */}
         <ProtectedRoute path='/addrecipe' component={AddNewRecipe} />
-        <ProtectedRoute path='/editrecipe' component={EditRecipe} />
+        <ProtectedRoute path='/editrecipe/:id' component={EditRecipe} />
         <ProtectedRoute path='/recipes/:id' component={RecipePage} />
         <ProtectedRoute path='/recipes' component={RecipeList} />
         <Route path='/registration' component={RegistrationForm} />

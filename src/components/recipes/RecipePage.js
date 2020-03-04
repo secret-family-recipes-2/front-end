@@ -20,10 +20,7 @@ const Btn = styled.button`
 `
 
 const RecipePage = props => {
-  console.log("props in recipe page", props)
-  
-  const recipesList =useSelector(state =>state.recipes)
-  console.log("recipesList in recipe page", recipesList)
+  // const recipesList =useSelector(state =>state.recipes)
   
   const { id } = useParams();
   const [item, setItem] = useState({
@@ -40,7 +37,7 @@ const RecipePage = props => {
     axiosWithAuth()
       .get(`/recipes/${id}`)
       .then(res => {
-        console.log(res)
+        console.log("recipe page get response", res)
         setItem(res.data)
       })
       .catch(err => {
@@ -54,9 +51,6 @@ const RecipePage = props => {
     e.preventDefault();
     history.push(`/editrecipe/${item.id}`)  
   }
-
-  
- console.log("item in  recipe page", recipesList)
   return (
     <Container>
       <Row>
