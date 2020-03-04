@@ -1,39 +1,56 @@
 import React, { useState }  from 'react'; 
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import { useParams, useHistory } from 'react-router-dom'
 
 
-    const initialState = {
-        title:'',
-        source:'',
-        instructions:'',
-        category:''
-    };
 
 const EditRecipe = props => {
-    const [editing, setEditing] = useState(false);
+   
+    const { id } = useParams();
+    const history = useHistory()
+
+    const initialState = {
+        id:id,
+        title:'',
+        source:'',
+        ingredients:'',
+        instructions:'',
+        category:'',
+        user_id: 1
+    };
     const [recipe, setRecipe ] = useState (initialState);
 
-    const saveEdit = e => {
+    const changeHandler = ev => {
+        ev.persist();
+        setRecipe({...recipe, [ev.target.name]: ev.target.value });
+      };
+    
+      const handleSubmit = e => {
+        console.log ("Put recipe in handle submit", recipe)
+        e.preventDefault();
         axiosWithAuth()
-        .put(`/api/auth/recipe/${recipe.id}`, recipe)
-        .then(res =>{
-            console.log("Response in the PUT request", res.data)
-        })
-        .catch(err => {
-            console.log (err)
-        })
-    };
+          .put(`/recipes/${recipe.id}`, recipe)
+          .then(res => {
+            console.log ("Response in the PUT request MovieEdit", res.data)
+            setRecipe(res.data);
+            history.push('/recipes')
+            
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      };
     return (
-        <Form onSubmit={saveEdit}>
+        <Form onSubmit={handleSubmit}>
         <FormGroup>
             <Label for="title">Name</Label>
             <Input 
                 type="text" 
-                name="email" 
+                name="title" 
                 id="title" 
                 placeholder="title"
-                onChange={ e =>{ setRecipe({...recipe, title:e.target.value})}}
+                onChange={changeHandler}
                 value={recipe.title} 
             />
         </FormGroup>
@@ -44,7 +61,7 @@ const EditRecipe = props => {
                 name="source" 
                 id="source" 
                 placeholder="source"
-                onChange={e =>{ setRecipe ({...recipe,  source:e.target.value})}}
+                onChange={changeHandler}
                 value={recipe.source}
             />
         </FormGroup>
@@ -54,14 +71,18 @@ const EditRecipe = props => {
                 type="select" 
                 name="category" 
                 id="category"
-                onChange={e =>{ setRecipe ({...recipe,  category:e.target.value})}}
+                onChange={changeHandler}
                 value={recipe.category}
             >
-                <option>Diner</option>
-                <option>Dessert</option>
-                <option>Breakfast</option>
-                <option>Drink</option>
-                <option>Cookies</option>
+                    <option>Add category</option>
+                    <option>Lunch</option>
+                    <option>Breakfast</option>
+                    <option>Diner</option>
+                    <option>Cookies</option>
+                    <option>Dessert</option>
+                    <option>Bread</option>
+                    <option>Salad</option>
+                    <option>Soup</option>
             </Input>
         </FormGroup>
         <FormGroup>
@@ -70,7 +91,7 @@ const EditRecipe = props => {
                 type="textarea" 
                 name="instructions" 
                 id="instructions" 
-                onChange={e =>{ setRecipe ({...recipe,  instructions:e.target.value})}}
+                onChange={changeHandler}
                 value={recipe.instructions}
             />
         </FormGroup>
@@ -79,7 +100,7 @@ const EditRecipe = props => {
             <Input type="file" name="image" id="image" />
         </FormGroup>
     <Button type="submit">Save changes</Button>
-    <Button onClick={() => setEditing(false)}>Cancel</Button>
+    <Button>Cancel</Button>
   </Form>
     )
 }    
