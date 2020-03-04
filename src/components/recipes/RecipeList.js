@@ -12,7 +12,7 @@ const RecipeList = () => {
   const [err, setErr] = useState([])
   const [isFetching, setIsFetching] = useState(true)
 
-  console.log(userId)
+  //console.log(userId)
 
   useEffect(() => {
     axiosWithAuth()
@@ -30,7 +30,7 @@ const RecipeList = () => {
   const gotallRecipes = allRecipes.length !== 0 ? true : false
   const gotError = err.message !== undefined ? true : false
 
-  console.log(gotallRecipes)
+  //console.log(gotallRecipes)
 
   if (isFetching) return <div>Loading...</div>
   else if (gotallRecipes)

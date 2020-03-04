@@ -1,4 +1,4 @@
-import React, { useState }  from 'react'; 
+import React, { useState, useEffect }  from 'react'; 
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import { useParams, useHistory } from 'react-router-dom'
@@ -32,9 +32,9 @@ const EditRecipe = props => {
         axiosWithAuth()
           .put(`/recipes/${recipe.id}`, recipe)
           .then(res => {
-            console.log ("Response in the PUT request MovieEdit", res.data)
+            console.log ("Response in the PUT request EditRecipe", res)
             setRecipe(res.data);
-            history.push('/recipes')
+           
             
           })
           .catch(err => {
@@ -99,8 +99,10 @@ const EditRecipe = props => {
             <Label for="image">File</Label>
             <Input type="file" name="image" id="image" />
         </FormGroup>
-    <Button type="submit">Save changes</Button>
-    <Button>Cancel</Button>
+    <Button type="submit"
+   
+     >Save changes</Button>
+    <Button onClick={()=> history.push('/recipes')}>Cancel</Button>
   </Form>
     )
 }    
