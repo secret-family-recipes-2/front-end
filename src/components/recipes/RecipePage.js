@@ -18,12 +18,14 @@ const Btn = styled.button`
 `
 
 const RecipePage = props => {
+  console.log("props in recipe page", props)
+  
   const recipesList =useSelector(state =>state.recipes)
+  console.log("recipesList in recipe page", recipesList)
+  
   const { id } = useParams();
 
-  const item =recipesList.find(
-    element => `${element.id}`=== props.match.params.id
-  );
+  
  console.log("item in  recipe page", recipesList)
   return (
     <Container>
@@ -39,7 +41,7 @@ const RecipePage = props => {
               {/* <p>Ingredients: {item.ingredients}</p> */}
               <p>Instructions: instructions</p>
               <BtnContainer>
-                <Btn>Edit Recipe</Btn>
+                <Btn onClick ={() => props.history.push(`/editrecipe/${item.id}`)}>Edit Recipe</Btn>
                 <Btn>Delete Recipe</Btn>
                 <Btn>Return</Btn>
               </BtnContainer>

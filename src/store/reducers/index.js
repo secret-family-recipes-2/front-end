@@ -8,6 +8,9 @@ import {
   POST_ADDRECIPE_START,
   POST_ADDRECIPE_SUCCESS,
   POST_ADDRECIPE_FAILURE,
+  // PUT_EDIT_START,
+  // PUT_EDIT_SUCCESS,
+  // PUT_EDIT_FAILURE,
   // FETCH_DATA_START,
   // FETCH_DATA_SUCCESS,
   // FETCH_DATA_FAILURE,
@@ -20,6 +23,8 @@ const initialState = {
   recipes: [],
   isFetching: false,
   error: '',
+  isEditing:false,
+  
 }
 
 const reducer = (state = initialState, action) => {
@@ -96,6 +101,26 @@ const reducer = (state = initialState, action) => {
           isFetching: false,
           error: action.payload,
         }
+      //   case PUT_EDIT_START:
+      //   return {
+      //     ...state,
+      //     isFetching: true,
+      //     error: '',
+      //   }
+      // case PUT_EDIT_SUCCESS:
+      //   console.log("action.payload in reducers", action.payload)
+      //   return {
+      //     ...state,
+      //     recipes:[...state.recipes, action.payload],
+      //     isFetching: false,
+      //     isEditing: false
+      //   }
+      // case PUT_EDIT_FAILURE:
+      //   return {
+      //     ...state,
+      //     isFetching: false,
+      //     error: action.payload,
+      //   }
     default:
       return state
   }
