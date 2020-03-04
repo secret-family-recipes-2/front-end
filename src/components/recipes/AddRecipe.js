@@ -15,17 +15,18 @@ import { useDispatch } from 'react-redux';
     };
 
 const AddNewRecipe = () => {
-     const [ newRecipe, setNewRecipe ] = useState (initialState);
+  const userId = Number(localStorage.getItem('userId'))
+  const [newRecipe, setNewRecipe] = useState(initialState)
 
-     const history = useHistory()
-     const dispatch = useDispatch();
+  const history = useHistory()
+  const dispatch = useDispatch()
 
-     const handleChange = e => { 
-        setNewRecipe({
-             ...newRecipe, 
-              [e.target.name]: e.target.value,
-        })
-     };  
+  const handleChange = e => {
+    setNewRecipe({
+      ...newRecipe,
+      [e.target.name]: e.target.value,
+    })
+  }
 
      const handleSubmit = e => {
          e.preventDefault();

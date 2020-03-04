@@ -18,7 +18,7 @@ import {
 
 const initialState = {
   user: {
-    id: null,
+    id: 0,
   },
   recipes: [],
   isFetching: false,

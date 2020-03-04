@@ -28,6 +28,7 @@ export const postLogin = credentials  => dispatch => {
     .then(res => {
       console.log(res)
       localStorage.setItem('token', res.data.token)
+      localStorage.setItem('userId', res.data.id)
       dispatch({ type: POST_LOGIN_SUCCESS, payload: res.data.id })
     })
     .catch(err => {
@@ -54,28 +55,28 @@ export const postRegister = credentials => dispatch => {
 }
 
 export const postAddRecipe = credentials => dispatch => {
-  dispatch ({
+  dispatch({
     type: POST_ADDRECIPE_START,
-    payload: credentials
-  });
-  console.log ("credentials in post add", credentials);
-  axiosWithAuth()
-  .post('/recipes', credentials)
-  .then(res => {
-    console.log ("postAddRecipe response", res)
-    dispatch({
-      type: POST_ADDRECIPE_SUCCESS,
-      payload: res.data.created_recipe
-    });
+    payload: credentials,
   })
-  .catch(err => {
-    console.log(err);
-    dispatch({
-      type:POST_ADDRECIPE_FAILURE,
-      payload:"error postind data"
-    });
-  });
-};
+  console.log('credentials in post add', credentials)
+  axiosWithAuth()
+    .post('/recipes', credentials)
+    .then(res => {
+      console.log('postAddRecipe response', res)
+      dispatch({
+        type: POST_ADDRECIPE_SUCCESS,
+        payload: res.data.created_recipe,
+      })
+    })
+    .catch(err => {
+      console.log(err)
+      dispatch({
+        type: POST_ADDRECIPE_FAILURE,
+        payload: 'error postind data',
+      })
+    })
+}
 
 // export const putEditRecipe = credentials => dispatch => {
 //   dispatch ({
@@ -104,7 +105,7 @@ export const postAddRecipe = credentials => dispatch => {
 
 // export const getData = credentials => dispatch => {
 //   dispatch({
-//       type: FETCH_DATA_START, 
+//       type: FETCH_DATA_START,
 //       payload: credentials
 //   });
 //   axiosWithAuth()
