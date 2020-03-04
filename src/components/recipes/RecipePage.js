@@ -42,7 +42,7 @@ const RecipePage = props => {
     history.push(`/editrecipe/${item.id}`)
   }
 
-  const deleteRecipe = (id) => {
+  const deleteRecipe = id => {
     axiosWithAuth()
       .delete(`https://secret-recipes-2.herokuapp.com/api/recipes/${id}`)
       .then(res => {
