@@ -8,7 +8,7 @@ const Navigation = () => {
 
   const logout = e => {
     e.preventDefault()
-    localStorage.removeItem('token')
+    localStorage.clear()
     history.push('/login')
   }
 
