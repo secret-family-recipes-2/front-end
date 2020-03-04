@@ -12,16 +12,15 @@ const Navigation = () => {
     history.push('/login')
   }
 
-
   return (
-    <Navbar color='faded' light className='nav-links'>
+    <Navbar style={{ backgroundColor: '#207561' }} dark>
       <NavbarBrand tag={Link} to='/' className='mr-auto'>
         Secret Family Recipes Cookbook
       </NavbarBrand>
 
       {/* display view recipes, add recipe, and log out if user has token, else display log in and sign up */}
       {localStorage.getItem('token') ? (
-        <Nav>
+        <Nav className='nav-links'>
           <NavItem>
             <NavLink
               tag={Link}
