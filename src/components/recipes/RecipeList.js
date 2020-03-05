@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import { axiosWithAuth } from '../../utils/axiosWithAuth'
 
 import RecipeCard from './RecipeCard'
+import SearchForm from './SearchForm'
 
 const RecipeList = () => {
   const userId = Number(localStorage.getItem('userId'))
@@ -37,6 +38,7 @@ const RecipeList = () => {
   else if (gotallRecipes)
     return (
       <Container>
+        <SearchForm recipes={allRecipes}/>
         <Row>
           {allRecipes.map(recipe => (
             <Col xs='12' sm='6' md='4' key={recipe.id}>
