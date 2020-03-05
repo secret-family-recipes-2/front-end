@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
-import { postAddRecipe } from '../../store/actions'
-import { useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import React, { useState } from 'react';
+import { Button, FormGroup, Label, Input } from 'reactstrap';
+import { postAddRecipe } from '../../store/actions';
+import { useHistory, withRouter } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { withFormik, Form, Feild, } from 'formik';
+import * as Yup from 'yup'
 
 const initialState = {
   title: '',
@@ -13,7 +15,7 @@ const initialState = {
   user_id: 1,
 }
 
-const AddNewRecipe = () => {
+const AddNewRecipe = ({ errors, touched }) => {
   const userId = Number(localStorage.getItem('userId'))
   const [newRecipe, setNewRecipe] = useState(initialState)
 
@@ -55,6 +57,7 @@ const AddNewRecipe = () => {
           onChange={handleChange}
           value={newRecipe.title}
         />
+        {touched.title && errors.title && (<p>{errors.title}</p>)}
       </FormGroup>
       <FormGroup>
         <Label for='source'>Source</Label>
@@ -66,6 +69,7 @@ const AddNewRecipe = () => {
           onChange={handleChange}
           value={newRecipe.source}
         />
+        {touched.source && errors.source && (<p>{errors.source}</p>)}
       </FormGroup>
       <FormGroup>
         <Label for='ingredients'>ingredients</Label>
@@ -77,6 +81,7 @@ const AddNewRecipe = () => {
           onChange={handleChange}
           value={newRecipe.ingredients}
         />
+        {touched.ingredients && errors.ingredients && (<p>{errors.ingredients}</p>)}
       </FormGroup>
       <FormGroup>
         <Label for='category'>Category</Label>
@@ -106,7 +111,7 @@ const AddNewRecipe = () => {
           id='instructions'
           onChange={handleChange}
           value={newRecipe.instructions}
-        />
+        />{touched.instructions && errors.instructions && (<p>{errors.instructions}</p>)}
       </FormGroup>
       <FormGroup>
         <Label for='image'>File</Label>
@@ -119,4 +124,24 @@ const AddNewRecipe = () => {
     </Form>
   )
 }
-export default AddNewRecipe
+const FormikAddRecipeForm = withFormik ({
+  mapPropsToValues(props){
+    return {
+      title:props.title ||'',
+      source:props.source ||'',
+      instructions:props.instructions ||'',
+      ingredients:props.ingredients ||'',
+    }
+  }, validationSchema :Yup.object().shape({
+    title:Yup.string()
+    .required("Please add recipe title"),
+    source:Yup.string()
+    .required("Please add recipe source"),
+    instructions:Yup.string()
+    .required("Please add recipe instructions"),
+    ingredients:Yup.string()
+    .required("Please add recipe ingredients")
+  })
+})(AddNewRecipe)
+
+export default withRouter(FormikAddRecipeForm)
