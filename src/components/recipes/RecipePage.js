@@ -41,12 +41,11 @@ const RecipePage = props => {
     e.preventDefault()
     history.push(`/editrecipe/${item.id}`)
   }
-
-  if (item.user_id !== userId && item.user_id > 0)
+  if (!item || (item.user_id !== userId && item.user_id > 0))
     return (
       <div className='status'>Uh oh! You don't have access to this recipe!</div>
     )
-  else if (item)
+  else
     return (
       <Container>
         <Row>
