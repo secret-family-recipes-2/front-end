@@ -57,16 +57,12 @@ const RecipeList = () => {
         No recipes yet? <Link to='/addrecipe'>Add one!</Link>
       </div>
     )
-<<<<<<< HEAD
   else if (gotError)
     return (
       <Card>
         <CardBody>{err.message}</CardBody>
       </Card>
     )
-=======
-  else if (gotError) return <p>{err.message}</p>
->>>>>>> ee2dab9c7406e8695de91ccf30e0fa8ff40e3ccc
   else return <></>
 }
 
