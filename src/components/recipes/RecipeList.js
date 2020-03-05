@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Row, Col } from 'reactstrap'
-import { useSelector } from 'react-redux'
+import { Container, Row, Col, Card, CardBody } from 'reactstrap'
+import { SpinnerDiv, Spinner } from '../styled-components/spinner'
 import { axiosWithAuth } from '../../utils/axiosWithAuth'
 
 import RecipeCard from './RecipeCard'
@@ -33,10 +33,15 @@ const RecipeList = () => {
 
   console.log(gotallRecipes)
 
-  if (isFetching) return <div>Loading...</div>
+  if (isFetching)
+    return (
+      <SpinnerDiv>
+        <Spinner color='success' />
+      </SpinnerDiv>
+    )
   else if (gotallRecipes)
     return (
-      <Container>
+      <Container style={{ margin: '50px auto' }}>
         <Row>
           {allRecipes.map(recipe => (
             <Col xs='12' sm='6' md='4' key={recipe.id}>
@@ -52,7 +57,12 @@ const RecipeList = () => {
         No recipes yet? <Link to='/addrecipe'>Add one!</Link>
       </div>
     )
-  else if (gotError) return <p>{err.message}</p>
+  else if (gotError)
+    return (
+      <Card>
+        <CardBody>{err.message}</CardBody>
+      </Card>
+    )
   else return <></>
 }
 

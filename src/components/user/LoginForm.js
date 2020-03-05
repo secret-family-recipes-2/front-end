@@ -11,6 +11,7 @@ import {
   Label,
   Input,
 } from 'reactstrap'
+import { SpinnerDiv, Spinner } from '../styled-components/spinner'
 
 import { postLogin } from '../../store/actions'
 
@@ -74,7 +75,11 @@ const LoginForm = props => {
               </FormGroup>
               <button>Log In</button>
             </Form>
-            {props.isFetching && <p>Loading...</p>}
+            {props.isFetching && (
+              <SpinnerDiv>
+                <Spinner color='success' />
+              </SpinnerDiv>
+            )}
           </Col>
         </Row>
       </Container>
