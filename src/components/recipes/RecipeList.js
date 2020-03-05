@@ -32,13 +32,13 @@ const RecipeList = () => {
   const gotallRecipes = allRecipes.length !== 0 ? true : false
   const gotError = err.message !== undefined ? true : false
 
-  //console.log(gotallRecipes)
+  console.log("here", allRecipes)
 
   if (isFetching) return <div>Loading...</div>
   else if (gotallRecipes)
     return (
       <Container>
-        <SearchForm recipes={allRecipes}/>
+        <SearchForm recipes={allRecipes} setAllRecipes={setAllRecipes}/>
         <Row>
           {allRecipes.map(recipe => (
             <Col xs='12' sm='6' md='4' key={recipe.id}>

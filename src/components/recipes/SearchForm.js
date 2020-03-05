@@ -1,31 +1,46 @@
 import React, { useState, useEffect } from "react";
-import { Form, Label, Input } from 'reactstrap'
+import { Button, Form, Label, Input } from 'reactstrap'
+import { useHistory } from 'react-router-dom'
 
 const SearchForm = props => {
     const [searchTerm, setSearchTerm] = useState("");
-    const [searchResults, setSearchResults] = useState(props.recipes);
+    console.log ("props",props.recipes)
+    
     useEffect(() => {
         const results = props.recipes.filter(recipe => {
-          return recipe.toLowerCase().includes(searchTerm.toLowerCase());
+          return recipe
+          //.toLowerCase().includes(searchTerm.toLowerCase());
         });
-        setSearchResults(results);
+       props.setAllRecipes(results);
       }, [searchTerm]);
 
       const handleChange = event => {
         setSearchTerm(event.target.value);
       };
+      const handleSubmit = event => {
+        setSearchTerm(event.target["title"].value);
+        event.preventDefault();
+      };
+  const history = useHistory()
+  const routeToRecipe = e => {
+    e.preventDefault()
+    history.push(`/recipes/${props.recipes.id}`)
+  }
       return (
           <div>
-              <Form>
+              <Form onSubmit={handleSubmit}>
                   <Label for ='search'>Search</Label>
                   <Input
-                    id="name"
+                    id="title"
+                    name="title"
                     type="text"
-                    name="textfield"
-                    placeholder="Search"
+                    placeholder="Search recipe"
                     onChange={handleChange}
                     value={searchTerm}
                   />
+                  <Button type='submit' 
+                  onClick={routeToRecipe}
+                  >Search</Button>
               </Form>
           </div>
       )

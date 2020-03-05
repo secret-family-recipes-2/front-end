@@ -42,11 +42,7 @@ const AddNewRecipe = () => {
     setNewRecipe(``)
     history.push('/recipes')
   }
-
-  //   const handleGetData = e => {
-  //     e.preventDefault();
-  //     getData();
-  // }
+  
   return (
     <Form onSubmit={handleSubmit}>
       <FormGroup>
@@ -117,10 +113,7 @@ const AddNewRecipe = () => {
         <Input type='file' name='image' id='image' />
       </FormGroup>
 
-      <Button
-        type='submit'
-        // onClick={ ()=> props.history.push("/recipes")}
-      >
+      <Button type='submit'>
         Submit
       </Button>
     </Form>
