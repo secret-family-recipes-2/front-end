@@ -3,10 +3,18 @@ import { axiosWithAuth } from '../../utils/axiosWithAuth'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import { useParams, useHistory } from 'react-router-dom'
 
+const initialState = {
+  title: '',
+  source: '',
+  ingredients: '',
+  instructions: '',
+  category: '',
+}
+
 const EditRecipe = () => {
   const { id } = useParams()
   const history = useHistory()
-  const [recipe, setRecipe] = useState({})
+  const [recipe, setRecipe] = useState(initialState)
 
   useEffect(() => {
     axiosWithAuth()
@@ -33,7 +41,7 @@ const EditRecipe = () => {
       .then(res => {
         console.log('Response in the PUT request', res.data)
         setRecipe(res.data)
-        history.push('/recipes')
+        history.push(`/recipes/${id}`)
       })
       .catch(err => {
         console.log(err)
@@ -88,6 +96,16 @@ const EditRecipe = () => {
           <option>Salad</option>
           <option>Soup</option>
         </Input>
+      </FormGroup>
+      <FormGroup>
+        <Label for='exampleText'>Ingredients</Label>
+        <Input
+          type='textarea'
+          name='ingredients'
+          id='ingredients'
+          onChange={changeHandler}
+          value={recipe.ingredients}
+        />
       </FormGroup>
       <FormGroup>
         <Label for='exampleText'>Instructions</Label>

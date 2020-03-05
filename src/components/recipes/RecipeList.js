@@ -53,9 +53,17 @@ const RecipeList = () => {
     )
   else if (!gotallRecipes)
     return (
-      <div>
-        No recipes yet? <Link to='/addrecipe'>Add one!</Link>
-      </div>
+      <Container style={{ margin: '50px auto' }}>
+        <Row>
+          <Col xs='12' lg={{ size: 4, offset: 4 }}>
+            <Card>
+              <CardBody>
+                No recipes yet? <Link to='/addrecipe'>Add one!</Link>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
     )
   else if (gotError)
     return (
