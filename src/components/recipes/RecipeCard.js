@@ -11,6 +11,7 @@ import {
   Badge,
   CardText,
 } from 'reactstrap'
+import cookbook from '../../img/cookbook.jpg'
 
 const Card = styled(ReactCard)`
   margin-bottom: 50px;
@@ -24,12 +25,7 @@ const RecipeCard = ({ recipe }) => {
   }
   return (
     <Card>
-      <CardImg
-        top
-        width='100%'
-        src='https://picsum.photos/636/360'
-        alt='Recipe'
-      />
+      <CardImg top width='100%' src={cookbook} alt='Recipe' />
       <CardBody>
         <CardTitle>Title: {recipe.title}</CardTitle>
         <CardSubtitle>Source: {recipe.source}</CardSubtitle>
