@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
-//import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import { postAddRecipe } from '../../store/actions'
-// import { getData } from '../../store/actions'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
@@ -12,6 +10,7 @@ const initialState = {
   ingredients: '',
   instructions: '',
   category: '',
+  user_id: 1,
 }
 
 const AddNewRecipe = () => {

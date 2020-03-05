@@ -19,10 +19,9 @@ const RecipeList = () => {
       .get('https://secret-recipes-2.herokuapp.com/api/recipes/allRecipes')
       .then(res => {
         setAllRecipes(res.data.filter(recipe => recipe.user_id === userId))
+        console.log(res)
         setIsFetching(false)
-        console.log('allRecipes', res)
       })
-
       .catch(err => {
         setErr(err)
         setIsFetching(false)
@@ -58,12 +57,16 @@ const RecipeList = () => {
         No recipes yet? <Link to='/addrecipe'>Add one!</Link>
       </div>
     )
+<<<<<<< HEAD
   else if (gotError)
     return (
       <Card>
         <CardBody>{err.message}</CardBody>
       </Card>
     )
+=======
+  else if (gotError) return <p>{err.message}</p>
+>>>>>>> ee2dab9c7406e8695de91ccf30e0fa8ff40e3ccc
   else return <></>
 }
 

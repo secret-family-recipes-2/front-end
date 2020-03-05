@@ -8,6 +8,9 @@ import {
   POST_ADDRECIPE_START,
   POST_ADDRECIPE_SUCCESS,
   POST_ADDRECIPE_FAILURE,
+  // PUT_EDIT_START,
+  // PUT_EDIT_SUCCESS,
+  // PUT_EDIT_FAILURE,
   // FETCH_DATA_START,
   // FETCH_DATA_SUCCESS,
   // FETCH_DATA_FAILURE,
@@ -20,6 +23,7 @@ const initialState = {
   recipes: [],
   isFetching: false,
   error: '',
+  isEditing: false,
 }
 
 const reducer = (state = initialState, action) => {

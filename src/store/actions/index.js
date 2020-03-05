@@ -74,6 +74,29 @@ export const postAddRecipe = credentials => dispatch => {
     })
 }
 
+// export const putEditRecipe = credentials => dispatch => {
+//   dispatch ({
+//     type:PUT_EDIT_START,
+//     payload:credentials
+//   });
+//   axiosWithAuth()
+//   .put(`/recipes/${credentials.id}` )
+//   .then(res => {
+//     console.log("Response in the PUT request", res)
+//     dispatch({
+//       type:PUT_EDIT_SUCCESS,
+//       payload: res.data.created_recipe
+//     });
+//   })
+//   .catch(err => {
+//     console.log(err);
+//     dispatch({
+//       type:PUT_EDIT_FAILURE,
+//       payload:"error put data"
+//     });
+//   });
+// };
+
 // export const getData = credentials => dispatch => {
 //   dispatch({
 //       type: FETCH_DATA_START,
