@@ -8,12 +8,6 @@ import {
   POST_ADDRECIPE_START,
   POST_ADDRECIPE_SUCCESS,
   POST_ADDRECIPE_FAILURE,
-  // PUT_EDIT_START,
-  // PUT_EDIT_SUCCESS,
-  // PUT_EDIT_FAILURE,
-  // FETCH_DATA_START,
-  // FETCH_DATA_SUCCESS,
-  // FETCH_DATA_FAILURE,
 } from '../actions'
 
 const initialState = {
@@ -63,24 +57,6 @@ const reducer = (state = initialState, action) => {
         isFetching: false,
         error: action.payload,
       }
-    // case FETCH_DATA_START:
-    //   return {
-    //     ...state,
-    //     isFetching: true,
-    //     error: '',
-    //   }
-    // case FETCH_DATA_SUCCESS:
-    //   return {
-    //     ...state,
-    //     recipes:action.payload,
-    //     isFetching: false,
-    //   }
-    // case FETCH_DATA_FAILURE:
-    //   return {
-    //     ...state,
-    //     isFetching: false,
-    //     error: action.payload,
-    //   }
     case POST_ADDRECIPE_START:
       return {
         ...state,

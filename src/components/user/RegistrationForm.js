@@ -4,21 +4,22 @@ import { useHistory } from 'react-router-dom'
 import { withFormik, Form as FormikForm, Field } from 'formik'
 import * as Yup from 'yup'
 import styled from 'styled-components'
-import {
-  Container,
-  Row,
-  Col,
-  Form as ReactForm,
-  FormGroup,
-  Label,
-  Input,
-} from 'reactstrap'
+import { Container, Row, Col } from 'reactstrap'
+import { SpinnerDiv, Spinner } from '../styled-components/spinner'
 
 import { postRegister } from '../../store/actions'
 
-const Form = styled(ReactForm)`
+const FormContainer = styled.div`
   margin-top: 150px;
   width: 100%;
+`
+
+const Input = styled.input`
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid #d5d5d5;
+  border-radius: 5px;
+  margin-bottom: 15px;
 `
 
 const DisplayForm = props => {
@@ -33,36 +34,39 @@ const DisplayForm = props => {
     <Container>
       <Row>
         <Col xs='12' md={{ size: 6, offset: 3 }}>
-          <FormikForm onSubmit={() => handleSubmit(props.values)}>
-            <Form onSubmit={handleSubmit}>
-              <FormGroup>
-                {props.touched.name && props.errors.name && (
-                  <p>{props.errors.name}</p>
-                )}
-                <Label for='username-field'>Username</Label>
-                <Field
-                  type='text'
-                  name='username'
-                  id='username-field'
-                  placeholder='Username'
-                />
-              </FormGroup>
-              <FormGroup>
-                {props.touched.password && props.errors.password && (
-                  <p>{props.errors.password}</p>
-                )}
-                <Label for='password-field'>Password</Label>
-                <Field
-                  type='password'
-                  name='password'
-                  id='password-field'
-                  placeholder='Password'
-                />
-              </FormGroup>
+          <FormContainer>
+            <FormikForm
+              style={{ width: '100%' }}
+              onSubmit={() => handleSubmit(props.values)}
+            >
+              {props.touched.name && props.errors.name && (
+                <p>{props.errors.name}</p>
+              )}
+              <label htmlFor='username-field'>Username</label>
+              <Input
+                type='text'
+                name='username'
+                id='username-field'
+                placeholder='Username'
+              />
+              {props.touched.password && props.errors.password && (
+                <p>{props.errors.password}</p>
+              )}
+              <label htmlFor='password-field'>Password</label>
+              <Input
+                type='password'
+                name='password'
+                id='password-field'
+                placeholder='Password'
+              />
               <button>Register</button>
-            </Form>
-          </FormikForm>
-          {props.isFetching && <p>Loading...</p>}
+            </FormikForm>
+          </FormContainer>
+          {props.isFetching && (
+            <SpinnerDiv>
+              <Spinner color='success' />
+            </SpinnerDiv>
+          )}
         </Col>
       </Row>
     </Container>

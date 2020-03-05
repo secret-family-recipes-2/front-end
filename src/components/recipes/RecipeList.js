@@ -1,20 +1,28 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Row, Col } from 'reactstrap'
-import { useSelector } from 'react-redux'
+import { Container, Row, Col, Card, CardBody } from 'reactstrap'
+import { SpinnerDiv, Spinner } from '../styled-components/spinner'
 import { axiosWithAuth } from '../../utils/axiosWithAuth'
-
+import { Button, Form, Label, Input } from 'reactstrap'
 import RecipeCard from './RecipeCard'
-import SearchForm from './SearchForm'
+
 
 const RecipeList = () => {
   const userId = Number(localStorage.getItem('userId'))
   const [allRecipes, setAllRecipes] = useState([])
   const [err, setErr] = useState([])
   const [isFetching, setIsFetching] = useState(true)
+  const [searchTerm, setSearchTerm] = useState("");
 
   //console.log(userId)
 
+  const handleChange = event => {
+    setSearchTerm(event.target.value);
+  };
+  const handleSubmit = event => {
+    setSearchTerm(event.target["title"].value);
+    event.preventDefault();
+  };
   useEffect(() => {
     axiosWithAuth()
       .get('https://secret-recipes-2.herokuapp.com/api/recipes/allRecipes')
@@ -32,29 +40,64 @@ const RecipeList = () => {
   const gotallRecipes = allRecipes.length !== 0 ? true : false
   const gotError = err.message !== undefined ? true : false
 
-  console.log("here", allRecipes)
 
-  if (isFetching) return <div>Loading...</div>
+  if (isFetching)
+    return (
+      <SpinnerDiv>
+        <Spinner color='success' />
+      </SpinnerDiv>
+    )
   else if (gotallRecipes)
     return (
       <Container>
-        <SearchForm recipes={allRecipes} setAllRecipes={setAllRecipes}/>
+        <div>
+              <Form onSubmit={handleSubmit}>
+                  <Label for ='search'>Search</Label>
+                  <Input
+                    id="title"
+                    name="title"
+                    type="text"
+                    placeholder="Search recipe"
+                    onChange={handleChange}
+                    value={searchTerm}
+                  />
+                  <Button type='submit'>Search</Button>
+              </Form>
+          </div>
         <Row>
-          {allRecipes.map(recipe => (
-            <Col xs='12' sm='6' md='4' key={recipe.id}>
-              <RecipeCard recipe={recipe} />
-            </Col>
-          ))}
+          {allRecipes.map(recipe => {
+            if (recipe.title && recipe.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+              return (
+                <Col xs='12' sm='6' md='4' key={recipe.id}>
+                  <RecipeCard recipe={recipe} />
+                </Col>
+              )
+            }else return null
+              
+          })}
         </Row>
       </Container>
     )
   else if (!gotallRecipes)
     return (
-      <div>
-        No recipes yet? <Link to='/addrecipe'>Add one!</Link>
-      </div>
+      <Container style={{ margin: '50px auto' }}>
+        <Row>
+          <Col xs='12' lg={{ size: 4, offset: 4 }}>
+            <Card>
+              <CardBody>
+                No recipes yet? <Link to='/addrecipe'>Add one!</Link>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
     )
-  else if (gotError) return <p>{err.message}</p>
+  else if (gotError)
+    return (
+      <Card>
+        <CardBody>{err.message}</CardBody>
+      </Card>
+    )
   else return <></>
 }
 

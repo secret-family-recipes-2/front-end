@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { Container, Row, Col, Card, CardBody, CardImg } from 'reactstrap'
-import { useSelector } from 'react-redux'
 import { axiosWithAuth } from '../../utils/axiosWithAuth'
 import { useHistory } from 'react-router-dom'
 
@@ -46,17 +45,17 @@ const RecipePage = props => {
     axiosWithAuth()
       .delete(`https://secret-recipes-2.herokuapp.com/api/recipes/${id}`)
       .then(res => {
-        console.log('Delete:',res.data.message)
+        console.log('Delete:', res.data.message)
         history.push('/recipes')
       })
       .catch(err => console.log(err))
   }
 
-  if (item.user_id !== userId && item.user_id > 0)
+  if (!item || (item.user_id !== userId && item.user_id > 0))
     return (
       <div className='status'>Uh oh! You don't have access to this recipe!</div>
     )
-  else if (item)
+  else
     return (
       <Container>
         <Row>
