@@ -86,7 +86,7 @@ const EditRecipe = () => {
           onChange={changeHandler}
           value={recipe.category}
         >
-          <option>Add category</option>
+          <option value=''>Add category</option>
           <option>Lunch</option>
           <option>Breakfast</option>
           <option>Dinner</option>
