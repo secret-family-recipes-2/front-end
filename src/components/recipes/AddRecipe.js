@@ -12,7 +12,7 @@ import {
 import { postAddRecipe } from '../../store/actions'
 import { useHistory, withRouter } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { withFormik, Form as FormikForm, Feild } from 'formik'
+import { withFormik, Form as FormikForm, Field } from 'formik'
 import * as Yup from 'yup'
 
 const Form = styled(FormikForm)`
@@ -62,9 +62,9 @@ const AddNewRecipe = ({ errors, touched }) => {
     <Container>
       <Row>
         <Col xs='12' md={{ size: 6, offset: 3 }}>
-          <Form onSubmit={handleSubmit} fullWidth>
+          <Form onSubmit={handleSubmit}>
             <FormGroup>
-              <Label for='title'>Name</Label>
+              <Label for='title'>Title</Label>
               <Input
                 type='text'
                 name='title'
