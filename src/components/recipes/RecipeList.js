@@ -53,15 +53,17 @@ const RecipeList = () => {
         <div>
               <Form onSubmit={handleSubmit}>
                   <Label for ='search'>Search</Label>
-                  <Input
-                    id="title"
-                    name="title"
-                    type="text"
-                    placeholder="Search recipe"
-                    onChange={handleChange}
-                    value={searchTerm}
-                  />
-                  <Button type='submit'>Search</Button>
+                  <div className ='searchBox'>
+                      <Input
+                          id="title"
+                          name="title"
+                          type="text"
+                          placeholder="Search recipe"
+                          onChange={handleChange}
+                          value={searchTerm}
+                        />
+                        <Button type='submit'>Search</Button>
+                  </div>
               </Form>
           </div>
         <Row>
