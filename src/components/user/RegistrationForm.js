@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { axiosWithAuth } from '../../utils/axiosWithAuth'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import { withFormik, Form as FormikForm, Field } from 'formik'
 import * as Yup from 'yup'
 import styled from 'styled-components'
@@ -53,10 +53,9 @@ const DisplayForm = props => {
                 placeholder='Password'
               />
               <button type='submit'>Register</button>
+              <h6>Already have an account?<Link to='/login'> LogIn</Link> </h6>
             </FormikForm>
-            //{' '}
           </FormContainer>
-          //{' '}
           {props.isFetching && (
             <SpinnerDiv>
               <Spinner color='success' />

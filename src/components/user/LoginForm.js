@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { Redirect, useHistory } from 'react-router-dom'
+import { Redirect, useHistory, Link } from 'react-router-dom'
 import styled from 'styled-components'
 import {
   Container,
@@ -74,6 +74,7 @@ const LoginForm = props => {
                 />
               </FormGroup>
               <button>Log In</button>
+              <h6>Don't have an account?<Link to='/registration'> Register</Link> </h6>
             </Form>
             {props.isFetching && (
               <SpinnerDiv>

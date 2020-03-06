@@ -52,7 +52,6 @@ const RecipeList = () => {
       <Container>
         <div>
               <Form onSubmit={handleSubmit}>
-                  <Label for ='search'>Search</Label>
                   <div className ='searchBox'>
                       <Input
                           id="title"
