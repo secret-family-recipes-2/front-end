@@ -78,7 +78,7 @@ const EditRecipe = () => {
                 type='text'
                 name='title'
                 id='title'
-                placeholder='title'
+                placeholder='Title of recipe'
                 onChange={changeHandler}
                 value={recipe.title}
               />
@@ -89,7 +89,7 @@ const EditRecipe = () => {
                 type='text'
                 name='source'
                 id='source'
-                placeholder='source'
+                placeholder='Who created this?'
                 onChange={changeHandler}
                 value={recipe.source}
               />
@@ -103,7 +103,7 @@ const EditRecipe = () => {
                 onChange={changeHandler}
                 value={recipe.category}
               >
-                <option value=''>Add category</option>
+                <option>Add category</option>
                 <option>Lunch</option>
                 <option>Breakfast</option>
                 <option>Dinner</option>
@@ -120,6 +120,7 @@ const EditRecipe = () => {
                 type='textarea'
                 name='ingredients'
                 id='ingredients'
+                placeholder='List of ingredients...'
                 onChange={changeHandler}
                 value={recipe.ingredients}
               />
@@ -130,13 +131,10 @@ const EditRecipe = () => {
                 type='textarea'
                 name='instructions'
                 id='instructions'
+                placeholder='Step by step instructions...'
                 onChange={changeHandler}
                 value={recipe.instructions}
               />
-            </FormGroup>
-            <FormGroup>
-              <Label for='image'>File</Label>
-              <Input type='file' name='image' id='image' />
             </FormGroup>
             <Button type='submit'>Save changes</Button>
             <Button onClick={cancel}>Cancel</Button>
