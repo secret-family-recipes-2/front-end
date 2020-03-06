@@ -49,7 +49,7 @@ const AddNewRecipe = ({ errors, touched }) => {
     <Form onSubmit={handleSubmit}>
       <FormGroup>
         <Label for='title'>Name</Label>
-        <Input
+        <Feild
           type='text'
           name='title'
           id='title'
@@ -61,7 +61,7 @@ const AddNewRecipe = ({ errors, touched }) => {
       </FormGroup>
       <FormGroup>
         <Label for='source'>Source</Label>
-        <Input
+        <Feild
           type='text'
           name='source'
           id='source'
@@ -73,7 +73,7 @@ const AddNewRecipe = ({ errors, touched }) => {
       </FormGroup>
       <FormGroup>
         <Label for='ingredients'>ingredients</Label>
-        <Input
+        <Feild
           type='text'
           name='ingredients'
           id='ingredients'
@@ -85,7 +85,7 @@ const AddNewRecipe = ({ errors, touched }) => {
       </FormGroup>
       <FormGroup>
         <Label for='category'>Category</Label>
-        <Input
+        <Feild
           type='select'
           name='category'
           id='category'
@@ -101,11 +101,11 @@ const AddNewRecipe = ({ errors, touched }) => {
           <option>Bread</option>
           <option>Salad</option>
           <option>Soup</option>
-        </Input>
+        </Feild>
       </FormGroup>
       <FormGroup>
         <Label for='exampleText'>Instructions</Label>
-        <Input
+        <Feild
           type='textarea'
           name='instructions'
           id='instructions'
@@ -115,7 +115,7 @@ const AddNewRecipe = ({ errors, touched }) => {
       </FormGroup>
       <FormGroup>
         <Label for='image'>File</Label>
-        <Input type='file' name='image' id='image' />
+        <Feild type='file' name='image' id='image' />
       </FormGroup>
 
       <Button type='submit'>
