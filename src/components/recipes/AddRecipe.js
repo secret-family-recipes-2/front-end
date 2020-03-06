@@ -3,7 +3,7 @@ import { Button, FormGroup, Label, Input } from 'reactstrap';
 import { postAddRecipe } from '../../store/actions';
 import { useHistory, withRouter } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { withFormik, Form, Feild, } from 'formik';
+import { withFormik, Form, Field, } from 'formik';
 import * as Yup from 'yup'
 
 const initialState = {
@@ -49,7 +49,7 @@ const AddNewRecipe = ({ errors, touched }) => {
     <Form onSubmit={handleSubmit}>
       <FormGroup>
         <Label for='title'>Name</Label>
-        <Input
+        <Field
           type='text'
           name='title'
           id='title'
@@ -61,7 +61,7 @@ const AddNewRecipe = ({ errors, touched }) => {
       </FormGroup>
       <FormGroup>
         <Label for='source'>Source</Label>
-        <Input
+        <Field
           type='text'
           name='source'
           id='source'
@@ -73,7 +73,7 @@ const AddNewRecipe = ({ errors, touched }) => {
       </FormGroup>
       <FormGroup>
         <Label for='ingredients'>ingredients</Label>
-        <Input
+        <Field
           type='text'
           name='ingredients'
           id='ingredients'
@@ -85,7 +85,7 @@ const AddNewRecipe = ({ errors, touched }) => {
       </FormGroup>
       <FormGroup>
         <Label for='category'>Category</Label>
-        <Input
+        <Field
           type='select'
           name='category'
           id='category'
@@ -101,11 +101,11 @@ const AddNewRecipe = ({ errors, touched }) => {
           <option>Bread</option>
           <option>Salad</option>
           <option>Soup</option>
-        </Input>
+        </Field>
       </FormGroup>
       <FormGroup>
         <Label for='exampleText'>Instructions</Label>
-        <Input
+        <Field
           type='textarea'
           name='instructions'
           id='instructions'
@@ -115,7 +115,7 @@ const AddNewRecipe = ({ errors, touched }) => {
       </FormGroup>
       <FormGroup>
         <Label for='image'>File</Label>
-        <Input type='file' name='image' id='image' />
+        <Field type='file' name='image' id='image' />
       </FormGroup>
 
       <Button type='submit'>
