@@ -12,11 +12,19 @@ import {
 import { postAddRecipe } from '../../store/actions'
 import { useHistory, withRouter } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { withFormik, Form as FormikForm, Field } from 'formik'
+import { withFormik, Form as FormikForm, Field as FormikField } from 'formik'
 import * as Yup from 'yup'
 
 const Form = styled(FormikForm)`
   width: 100%;
+`
+
+const Field = styled(FormikField)`
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid #d5d5d5;
+  border-radius: 5px;
+  margin-bottom: 15px;
 `
 
 const initialState = {
@@ -65,7 +73,7 @@ const AddNewRecipe = ({ errors, touched }) => {
           <Form onSubmit={handleSubmit}>
             <FormGroup>
               <Label for='title'>Title</Label>
-              <Input
+              <Field
                 type='text'
                 name='title'
                 id='title'
@@ -77,7 +85,7 @@ const AddNewRecipe = ({ errors, touched }) => {
             </FormGroup>
             <FormGroup>
               <Label for='source'>Source</Label>
-              <Input
+              <Field
                 type='text'
                 name='source'
                 id='source'
@@ -89,14 +97,14 @@ const AddNewRecipe = ({ errors, touched }) => {
             </FormGroup>
             <FormGroup>
               <Label for='category'>Category</Label>
-              <Input
-                type='select'
+              <Field
+                as='select'
                 name='category'
                 id='category'
                 onChange={handleChange}
                 value={newRecipe.category}
               >
-                <option value=''>Add category</option>
+                <option>Add category</option>
                 <option>Lunch</option>
                 <option>Breakfast</option>
                 <option>Dinner</option>
@@ -105,12 +113,12 @@ const AddNewRecipe = ({ errors, touched }) => {
                 <option>Bread</option>
                 <option>Salad</option>
                 <option>Soup</option>
-              </Input>
+              </Field>
             </FormGroup>
             <FormGroup>
               <Label for='ingredients'>Ingredients</Label>
-              <Input
-                type='textarea'
+              <Field
+                as='textarea'
                 name='ingredients'
                 id='ingredients'
                 placeholder='List of ingredients...'
@@ -123,8 +131,8 @@ const AddNewRecipe = ({ errors, touched }) => {
             </FormGroup>
             <FormGroup>
               <Label for='exampleText'>Instructions</Label>
-              <Input
-                type='textarea'
+              <Field
+                as='textarea'
                 name='instructions'
                 id='instructions'
                 placeholder='Step by step instructions...'
@@ -134,10 +142,6 @@ const AddNewRecipe = ({ errors, touched }) => {
               {touched.instructions && errors.instructions && (
                 <p>{errors.instructions}</p>
               )}
-            </FormGroup>
-            <FormGroup>
-              <Label for='image'>File</Label>
-              <Input type='file' name='image' id='image' />
             </FormGroup>
 
             <Button type='submit'>Submit</Button>
