@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { axiosWithAuth } from '../../utils/axiosWithAuth'
 import { useHistory } from 'react-router-dom'
 import { withFormik, Form as FormikForm, Field } from 'formik'
 import * as Yup from 'yup'
@@ -14,7 +15,7 @@ const FormContainer = styled.div`
   width: 100%;
 `
 
-const Input = styled.input`
+const Input = styled(Field)`
   width: 100%;
   padding: 6px 10px;
   border: 1px solid #d5d5d5;
@@ -25,43 +26,37 @@ const Input = styled.input`
 const DisplayForm = props => {
   const history = useHistory()
 
-  const handleSubmit = values => {
-    props.postRegister(values)
-    history.push('/recipes')
-  }
-
   return (
     <Container>
       <Row>
         <Col xs='12' md={{ size: 6, offset: 3 }}>
           <FormContainer>
-            <FormikForm
-              style={{ width: '100%' }}
-              onSubmit={() => handleSubmit(props.values)}
-            >
-              {props.touched.name && props.errors.name && (
-                <p>{props.errors.name}</p>
+            <FormikForm style={{ width: '100%' }}>
+              {props.touched.username && props.errors.username && (
+                <p>{props.errors.username}</p>
               )}
-              <label htmlFor='username-field'>Username</label>
+              <label htmlFor='username'>Username</label>
               <Input
                 type='text'
                 name='username'
-                id='username-field'
+                id='username'
                 placeholder='Username'
               />
               {props.touched.password && props.errors.password && (
                 <p>{props.errors.password}</p>
               )}
-              <label htmlFor='password-field'>Password</label>
+              <label htmlFor='password'>Password</label>
               <Input
                 type='password'
                 name='password'
-                id='password-field'
+                id='password'
                 placeholder='Password'
               />
-              <button>Register</button>
+              <button type='submit'>Register</button>
             </FormikForm>
+            //{' '}
           </FormContainer>
+          //{' '}
           {props.isFetching && (
             <SpinnerDiv>
               <Spinner color='success' />
@@ -89,6 +84,17 @@ const RegistrationForm = withFormik({
       .min(4, 'Password needs to be at least 4 characters')
       .required('You need a password'),
   }),
+  handleSubmit(values) {
+    console.log(values)
+    axiosWithAuth()
+      .post('/auth/register', values)
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  },
 })(DisplayForm)
 
 const mapStateToProps = state => {
