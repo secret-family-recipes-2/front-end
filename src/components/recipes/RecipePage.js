@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { Container, Row, Col, Card, CardBody, CardImg } from 'reactstrap'
-import { useSelector } from 'react-redux'
 import { axiosWithAuth } from '../../utils/axiosWithAuth'
 import { useHistory } from 'react-router-dom'
 
