@@ -70,11 +70,11 @@ const RecipePage = props => {
                   <p>from {item.source}</p>
                 </Title>
                 <Title>
-                  <h6>INGREDIENTS</h6>
+                  <h5>Ingredients</h5>
                   <p>{item.ingredients}</p>
                 </Title>
                 <Title>
-                  <h6>INSTRUCTIONS</h6>
+                  <h5>Instructions</h5>
                   <p>{item.instructions}</p>
                 </Title>
                 <BtnContainer>
