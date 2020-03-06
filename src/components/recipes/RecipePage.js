@@ -6,17 +6,19 @@ import { useSelector } from 'react-redux'
 import { axiosWithAuth } from '../../utils/axiosWithAuth'
 import { useHistory } from 'react-router-dom'
 
+import cookbook from '../../img/cookbook.jpg'
+
 const Title = styled.div`
   margin-bottom: 20px;
 `
 
 const BtnContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-around;
 `
 
 const Btn = styled.button`
-  margin-left: 20px;
+  margin-left: 0;
 `
 
 const RecipePage = props => {
@@ -62,14 +64,20 @@ const RecipePage = props => {
         <Row>
           <Col xs={{ size: 8, offset: 2 }}>
             <Card>
-              <CardImg src='https://picsum.photos/1272/720' alt='title' />
-              <CardBody>
+              <CardImg src={cookbook} alt='cookbook-image' />
+              <CardBody className='text-center'>
                 <Title>
                   <h2>{item.title}</h2>
-                  <h4>{item.source}</h4>
+                  <p>from {item.source}</p>
                 </Title>
-                <p>Ingredients: {item.ingredients}</p>
-                <p>Instructions: {item.instructions}</p>
+                <Title>
+                  <h6>INGREDIENTS</h6>
+                  <p>{item.ingredients}</p>
+                </Title>
+                <Title>
+                  <h6>INSTRUCTIONS</h6>
+                  <p>{item.instructions}</p>
+                </Title>
                 <BtnContainer>
                   <Btn onClick={e => routeToRecipeEdit(e, item)} key={item.id}>
                     Edit Recipe
