@@ -76,3 +76,7 @@ button {
   outline: none;
   -webkit-appearance: none;
 }
+.searchBox{
+  display: flex;
+  flex-direction: row;
+}
