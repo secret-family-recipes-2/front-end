@@ -1,4 +1,4 @@
-## Secret Family Recipes Cookbook - Front End
+## An application to save Secret Family Recipes Cookbook - Front End
 
 #### Deployed Site: https://secret-family-recipes.now.sh/
 
